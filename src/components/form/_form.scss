@@ -1,0 +1,11 @@
+.form{
+    width: 310px;
+    height: fit-content;
+    &__input{
+        width: 220px;
+        border-radius: 5px;
+        padding: 5px 10px;
+        text-decoration: none;
+        border: none;
+    }
+}

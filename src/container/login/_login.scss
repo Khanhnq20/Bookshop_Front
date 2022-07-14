@@ -1,0 +1,21 @@
+.login{
+    &__form{
+        background-color: #F6F8FA;
+        width: 320px;
+        padding: 20px 10px;
+        position: absolute;
+        top:50%;
+        right: 50%;
+        transform: translate(50%,-100%);
+        border-radius: 10px;
+        border: 1px solid #d0d7de;
+    }
+    &__flex{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap:15px;
+    }
+    
+}
