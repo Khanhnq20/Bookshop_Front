@@ -8,6 +8,14 @@ export default function Component({children,...restProp}) {
     )
 }
 
+Component.Item = function ({ children, ...restProp }) {
+    return (
+        <div className="component__item" {...restProp}>
+            {children}
+        </div>
+    )
+}
+
 Component.Flex = function ({ children, ...restProp }) {
     return(
         <div className="component__flex" {...restProp}>
