@@ -8,4 +8,8 @@
         text-decoration: none;
         border: none;
     }
+    &__item{
+        max-width: 310px;
+        max-height: 390px;
+    }
 }

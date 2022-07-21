@@ -15,3 +15,18 @@ Form.Input = function ({ children, ...restProp }) {
         </input>
     )
 }
+
+Form.Image = function ({ children, ...restProp }) {
+    return (
+        <img className="form__image" {...restProp}>
+        </img>
+    )
+}
+
+Form.Item = function ({ children, ...restProp }) {
+    return (
+        <div className="form__item" {...restProp}>
+            {children}
+        </div>
+    )
+}
