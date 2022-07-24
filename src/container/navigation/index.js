@@ -4,10 +4,10 @@ import Component from "../../components/root";
 import { BsSearch, BsCartFill } from 'react-icons/bs';
 import Form from '../../components/form';
 
-export default function NavigationContainer(){
+export default function NavigationContainer({...resProp}){
     const [toggle,setToggle] = React.useState(" ");
     return(
-        <Component className="nav">
+        <Component className="nav" {...resProp}>
             <Component.Flex className="nav__frame">
                 <Component className="nav__flexItem">
                     <Component className="nav__first">

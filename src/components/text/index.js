@@ -37,3 +37,15 @@ Text.Link = function ({children,...restProp}){
         <a className="text__link" {...restProp}>{children}</a>
     )
 }
+
+Text.Label = function ({ children, ...restProp }) {
+    return (
+        <p className="text__label" {...restProp}>{children}</p>
+    )
+}
+
+Text.Info = function ({ children, ...restProp }) {
+    return (
+        <p className="text__info" {...restProp}>{children}</p>
+    )
+}

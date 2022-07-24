@@ -1,5 +1,17 @@
 .logo{
     font-size: 20px;
-    color: white;
+    color: black;
     font-weight: 700;
+    background-color: white;
+    padding: 4px 8px;
+    border-radius: 10px;
+    width: fit-content;
+    &__k{
+        display: inline-block;
+        transform: rotate(17deg);
+    }
+    &__b{
+        display: inline-block;
+        transform: rotate(-15deg);
+    }
 }

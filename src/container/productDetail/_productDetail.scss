@@ -1,0 +1,97 @@
+.productDetail{
+    padding: 80px 160px;
+    max-width: 1280px;
+    margin: 0 auto;
+    &__item1{
+        max-width: 400px;
+    }
+    &__item2{
+        flex-grow: 1;
+        width: 65%;
+        text-align: left;
+        display: flex;
+        flex-direction: column;
+        gap:15px;
+        padding:0 30px;
+    }
+    &__flex{
+        display: flex;
+        position: relative;
+        gap:60px;
+        padding: 0 30px;
+    }
+    &__title{
+        margin: 0;
+        text-align: left;
+        font-size: 30px;
+        line-height: 38px;
+    }
+    &__price{
+        margin: 0;
+        color: #de0000;
+        font-size: 25px;
+        font-weight: 600;
+    }
+    &__image{
+        height: 100%;
+        width: 100%;
+        margin: 0 50px;
+    }
+    &__label{
+        display: flex;
+        gap: 10px;
+    }
+    &__topic{
+        display: flex;
+        flex-direction: column;
+        gap:5px;
+    }
+    &__info{
+        display: flex;
+        flex-direction: column;
+        gap:5px;
+    }
+    &__minus{
+        vertical-align: middle;
+            cursor: pointer;
+        
+            &:hover {
+                color: #de0000;
+            }
+    }
+    &__plus{
+        vertical-align: middle;
+        cursor: pointer;
+        &:hover{
+            color: #de0000;
+        }
+    }
+    &__number{
+        padding: 12px;
+    }
+    &__quantity{
+        border: 1px solid black;
+        padding: 12px 12px 9px 12px;
+    }
+    &__button{
+                text-align: center;
+                text-decoration: none;
+                background-color: black;
+                color: white;
+                border: 2px solid black;
+                border-radius: 5px;
+                padding: 11px 30px;
+                margin:12px 10px;
+                cursor: pointer;
+                &:hover {
+                    background-color: white;
+                    color: black;
+                    transition: all 0.4s;
+                }
+    }
+    &__quantityForm{
+        display: flex;
+        align-items: center;
+        gap:20px
+    }
+}

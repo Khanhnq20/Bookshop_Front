@@ -1,0 +1,58 @@
+.footer{
+    background-color: #222222;
+    &__flex{
+        display: flex;
+    }
+    &__item{
+        padding: 20px 60px;
+        flex-grow: 1;
+        width: 25%;
+        flex-wrap: wrap;
+    }
+    &__title{
+        font-size: 19px;
+        font-weight: 700;
+        color: white;
+        margin-bottom: 30px;
+    }
+    &__text{
+        color: white;
+        font-size: 15px;
+        font-weight: 500;   
+    }
+    &__copyright{
+        color: white;
+        font-size: 11px;
+        margin: 0;
+        font-weight: 500;
+        padding: 10px;
+        text-align: center;
+    }
+    &__iconContact{
+        border: 3px solid #b1b1b1;
+        color: #b1b1b1;
+        border-radius: 50%;
+        padding: 3px;
+        cursor: pointer;
+        font-size: 18px;
+        &:hover{
+            color: white;
+            border-color: white;
+        }
+    }
+    &__iconForm{
+        padding-top: 10px;
+        display: flex;
+        gap: 10px;
+    }
+    &__policy{
+        color: white;
+        display: block;
+        font-size: 15px;
+        font-weight: 500;
+        cursor: pointer;
+        margin: 1rem 0rem 1rem 0rem ;
+        border-bottom: 0.5px solid #cccccc;
+        padding-bottom: 3px;
+    }
+}

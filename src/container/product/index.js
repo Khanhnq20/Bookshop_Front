@@ -11,7 +11,7 @@ export default function ProductContainer(){
                     <Component className="product__formImage">
                         <Form.Image className="product__image" src="https://tinyurl.com/4bfh7s5z"></Form.Image>
                     </Component>
-                    <Text.Subtitle className="product__name">Can Khon Dai Na Di</Text.Subtitle>
+                    <Text.Subtitle className="product__name">Gun</Text.Subtitle>
                     <Text className="product__price">600$</Text>
                 </Form.Item>
             </Component>

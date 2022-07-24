@@ -16,9 +16,25 @@ Component.Item = function ({ children, ...restProp }) {
     )
 }
 
+Component.Span = function ({ children, ...restProp }) {
+    return (
+        <span className="component__span" {...restProp}>
+            {children}
+        </span>
+    )
+}
+
 Component.Flex = function ({ children, ...restProp }) {
     return(
         <div className="component__flex" {...restProp}>
+            {children}
+        </div>
+    )
+}
+
+Component.Wrapper = function ({ children, ...restProp }) {
+    return (
+        <div className="component__wrapper" {...restProp}>
             {children}
         </div>
     )
