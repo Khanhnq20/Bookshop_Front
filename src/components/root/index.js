@@ -32,6 +32,14 @@ Component.Flex = function ({ children, ...restProp }) {
     )
 }
 
+Component.Grid = function ({ children, ...restProp }) {
+    return (
+        <div className="component__grid" {...restProp}>
+            {children}
+        </div>
+    )
+}
+
 Component.Wrapper = function ({ children, ...restProp }) {
     return (
         <div className="component__wrapper" {...restProp}>
@@ -40,3 +48,10 @@ Component.Wrapper = function ({ children, ...restProp }) {
     )
 }
 
+Component.Table = function ({ children, ...restProp }) {
+    return (
+        <table className="component__table" {...restProp}>
+            {children}
+        </table>
+    )
+}

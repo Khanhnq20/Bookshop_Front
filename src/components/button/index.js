@@ -7,3 +7,20 @@ export default function Button({children, ...restProp}){
         </a>
     )
 }
+
+
+Button.Delete = ({children,...restProp}) =>{
+    return(
+        <a className="button__delete" {...restProp}>
+            {children}
+        </a>
+    )
+}
+
+Button.Update = ({ children, ...restProp }) => {
+    return (
+        <a className="button__update" {...restProp}>
+            {children}
+        </a>
+    )
+}

@@ -4,6 +4,28 @@
     position: fixed;
     padding: 8px 5px;
     width: 100%;
+    z-index: 9999;
+    &__table {
+        position: absolute;
+        background-color: white;
+        padding: 20px;
+        border-top: 1px solid black;
+        top:39px;
+        td {
+        padding: 5px 15px;
+        width: 200px;
+        border-bottom:1px solid #F9FAFD;
+        } 
+        transform: translate(-50%);
+    }
+    &__genres{
+        position: relative;
+    }
+    &__genresItem{
+        cursor: pointer;
+        color: black;
+        text-decoration: none;
+    }   
     &__frame{
         display: flex;
         justify-content: flex-start;
@@ -20,6 +42,7 @@
         flex-grow: 1;
         padding: 5px 0;
         height: fit-content;
+        width: 33.33%;
     }
     &__first{
         display: flex;

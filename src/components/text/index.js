@@ -49,3 +49,9 @@ Text.Info = function ({ children, ...restProp }) {
         <p className="text__info" {...restProp}>{children}</p>
     )
 }
+
+Text.Price = function ({ children, ...restProp }) {
+    return (
+        <p className="text__price" {...restProp}>{children}</p>
+    )
+}

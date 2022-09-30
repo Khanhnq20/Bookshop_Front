@@ -1,19 +1,68 @@
 import React from "react";
+import Button from "../../components/button";
 import Form from "../../components/form";
 import Component from "../../components/root";
 import Text from "../../components/text";
+import { GrAdd } from 'react-icons/gr'
+import { deleteProduct, getProduct } from "../../api/product";
 
 export default function ProductContainer(){
+    const [product,setProduct] = React.useState({
+        getProduct:[]
+    })
+    React.useEffect(() => {
+        getProduct().then(res => {
+
+            const {data} = res;
+            console.log(data);
+            setProduct({
+                ...product,
+                getProduct:[...data]
+            })
+        });
+    }, [])
+
     return(
         <Component>
             <Component className="product">
-                <Form.Item className="product__form">
-                    <Component className="product__formImage">
-                        <Form.Image className="product__image" src="https://tinyurl.com/4bfh7s5z"></Form.Image>
+                <Component className="product__list">
+                    {product.getProduct.map(e =>{
+                        return(
+                            <Form.Item className="product__form">
+                                <Component className="product__formImage">
+                                    <Form.Image className="product__image" src={e.fileImage}></Form.Image>
+                                </Component>
+                                <Text.Subtitle className="product__name">{e.name}</Text.Subtitle>
+                                <Text className="product__price">{e.author}</Text>
+                                <Component className="product__buttonManage">
+                                    <Button.Update>Update</Button.Update>
+                                    <Button.Delete
+                                    onClick={() => {
+                                        deleteProduct(e.id);
+                                        setProduct(oldState => {
+                                            return{
+                                                ...oldState,
+                                                getProduct: oldState.getProduct.filter(i => i.id !== e.id)
+                                            }
+                                        })
+                                    }}
+                                    
+                                    >Delete</Button.Delete>
+                                </Component>
+                            </Form.Item>
+                        )
+                    })}
+                    <Component className="product">
+                        <Form.Item className="product__form">
+                            <Text.Link href="/createProduct">
+                                <GrAdd className="product__add"></GrAdd>
+                            </Text.Link>
+                        </Form.Item>
                     </Component>
-                    <Text.Subtitle className="product__name">Gun</Text.Subtitle>
-                    <Text className="product__price">600$</Text>
-                </Form.Item>
+                </Component>
+                <Component className="product__formButton">
+                    <Button className="product__button">View All</Button>
+                </Component>
             </Component>
         </Component>
     )

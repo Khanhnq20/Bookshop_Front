@@ -7,10 +7,50 @@
     border: 2px solid black;
     border-radius: 5px;
     margin: 10px;
+    min-width: auto;
+    white-space: nowrap;
     cursor: pointer;
     &:hover{
         background-color: white;
         color: black;
         transition: all 0.4s;
+    }
+    &__delete{
+        padding: 5px 10px;
+            text-align: center;
+            text-decoration: none;
+            background-color: #C41E3A;
+            color: white;
+            border: 2px solid #C41E3A;
+            border-radius: 5px;
+            margin: 10px;
+            min-width: auto;
+            white-space: nowrap;
+            cursor: pointer;
+        
+            &:hover {
+                background-color: white;
+                color: #C41E3A;
+                transition: all 0.4s;
+            }
+    }
+    &__update{
+        padding: 5px 10px;
+            text-align: center;
+            text-decoration: none;
+            background-color: green;
+            color: white;
+            border: 2px solid green;
+            border-radius: 5px;
+            margin: 10px;
+            min-width: auto;
+            white-space: nowrap;
+            cursor: pointer;
+        
+            &:hover {
+                background-color: white;
+                color: green;
+                transition: all 0.4s;
+            }
     }
 }

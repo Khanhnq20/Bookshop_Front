@@ -28,8 +28,8 @@
         text-justify: inter-word;
     }
     &__link{
-        font-size: 13px;
         text-decoration: none;
+        color: black;
     }
     &__label{
         display: block;
@@ -37,9 +37,12 @@
         font-size: 14px;
     }
     &__info{
-        color: #de0000;
+        color: #6C758E;
         margin: 0;
         font-size: 14px;
     }
-    
+    &__price{
+        color: #de0000;
+        margin-bottom: 0;
+    }
 }

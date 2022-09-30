@@ -1,29 +1,28 @@
 import React from "react";
 
-export default function Form({ children, ...restProp }) {
+export default function FormComponent({ children, ...restProp }) {
     return (
-        <div className="form" {...restProp}>
+        <form className="form" {...restProp}>
             {children}
-        </div>
+        </form>
     )
 }
 
-Form.Input = function ({ children, ...restProp }) {
+FormComponent.Input = function ({ children, ...restProp }) {
     return (
-        <input type={"text"} className="form__input" {...restProp}>
-            {children}
+        <input className="form__input" {...restProp}>
         </input>
     )
 }
 
-Form.Image = function ({ children, ...restProp }) {
+FormComponent.Image = function ({ children, ...restProp }) {
     return (
         <img className="form__image" {...restProp}>
         </img>
     )
 }
 
-Form.Item = function ({ children, ...restProp }) {
+FormComponent.Item = function ({ children, ...restProp }) {
     return (
         <div className="form__item" {...restProp}>
             {children}

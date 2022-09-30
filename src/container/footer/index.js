@@ -14,7 +14,7 @@ export default function FooterContainer(){
             <Component.Flex className="footer__flex">
                 <Component className="footer__item">
                     <Text.Title className="footer__title">About Us</Text.Title>
-                    <Logo></Logo>
+                    <Logo style={{marginBottom:"15px"}}></Logo>
                     <Text.Subtitle className="footer__text">BoKo was established in 
                         2020 in Da Nang - Vietnam, BoKo brand is one of the leading 
                         bookstore systems in the Vietnamese market
@@ -46,7 +46,7 @@ export default function FooterContainer(){
                                   654 Ngo Quyen, An Hai Bac Dictrict, Da Nang City
                             </Text.Subtitle>
                         </Component>
-                        <Text.Subtitle className="footer__text">Phone Number: 0107773034</Text.Subtitle>
+                        <Text.Subtitle className="footer__text">Hotline: 0107773034</Text.Subtitle>
                         <Text.Subtitle className="footer__text">Represent: Ngo Xuan Phuc</Text.Subtitle>
                         <Text.Subtitle className="footer__text">Email: contactboko@gmail.com</Text.Subtitle>
                     </Component>

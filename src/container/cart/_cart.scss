@@ -1,0 +1,13 @@
+.cart{
+    &__flex{
+        display: flex;
+        gap: 15px;
+        justify-content: center;
+    }
+    &__type{
+        white-space: nowrap;
+        font-size: 15px;
+        margin: 0;
+    }
+}
+

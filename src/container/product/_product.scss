@@ -4,32 +4,73 @@
     padding: 10px;
     &__form{
         max-width: 310px;
-        max-height: 390px;
+        min-width: 250px;
+        min-height: 370px;
         border: 1px solid #f2f2f3;
         line-height: 28px;
         border-radius: 10px;
         overflow: hidden;
+        position: relative;
     }
     &__formImage{
-        border-bottom: 4px solid green;
         overflow: hidden;
     }
     &__image{
         width: 100%;
         height: 100%;
+        max-height: 290px;
         cursor: pointer;
         &:hover {
                 transition: all 0.2s linear;
-                transform: scale(120%);
+                transform: scale(103%);
             }
+        object-fit: cover;
     }
     &__name{
         margin: 10px 10px 0 10px;
         font-weight: 500;
+        text-align: center;
     }
     &__price{
         margin: 0;
         color: #de0000;
         font-weight: 600;
+        text-align: center;
+    }
+    &__formButton{
+        width: 100%;
+        position: relative;
+        height: 50px;
+        text-align: center;
+        margin:15px 0;
+    }
+    &__button{
+        padding: 10px 30px;
+        text-align: center;
+        text-decoration: none;
+        background-color: white;
+        color: black;
+        border: 2px solid black;
+        border-radius: 5px;
+        margin: 10px;
+        cursor: pointer;
+        &:hover {
+            background-color: black;
+            color: white;
+            transition: all 0.4s;
+        }
+        position: absolute;
+        transform: translate(-50%);
+    }
+    &__list{
+        display: flex;
+    }
+    &__add{
+        font-size: 200px;
+    }
+    &__buttonManage{
+        display: flex;
+        justify-content: center;
+        line-height: 20px;
     }
 }
