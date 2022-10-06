@@ -29,6 +29,36 @@ export function getProduct(){
     return staffInstance.get("getProduct");
 }
 
-export function deleteProduct(){
-    return staffInstance.delete("deleteProduct");
+export function deleteProduct(id){
+    return staffInstance.delete("deleteProduct",{
+        params: {
+            id:id
+        }
+    });
+}
+
+export function getSingleProduct(id){
+    return staffInstance.get("getSingleProduct",{
+        params:{
+            id:id
+        }
+    })
+}
+
+export function updateProduct(updatedProduct,id){
+    return staffInstance.put("updateProduct",updatedProduct,{
+        params:{
+            id:id
+        }
+    })
+}
+
+export function updateProductImage(file, productId){
+    const formData = new FormData();
+    formData.append("request", file);
+    return staffInstance.put("updateImage", formData ,{
+        params:{
+            id: productId
+        }
+    })
 }

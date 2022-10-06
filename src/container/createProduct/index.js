@@ -37,7 +37,6 @@ export default function CreateProductContainer(){
     React.useEffect(() => {
         getGenre().then(response => {
             const { data } = response;
-            console.log(data)
             setGenre({
                 ...genre,
                 data: data
@@ -83,7 +82,7 @@ export default function CreateProductContainer(){
                             <FaTimes></FaTimes>
                         </Component>
                     </Component>
-                    <Form onSubmit={handleSubmit}>
+                    <Form className="createProduct__entireForm" onSubmit={handleSubmit}>
                         <Component>
                             <Form.Group controlId="file">
                                 <Form.Control type="file"
@@ -279,6 +278,7 @@ export default function CreateProductContainer(){
                                                                     <Component.Span className="createProduct__formatItem">
                                                                         <Text.Label className="text__label textFormat">Type</Text.Label>
                                                                         <Text.Info className="text__info textFormat">{item.name}</Text.Info>
+                                
                                                                     </Component.Span>
                                                                     <Component.Span className="createProduct__formatItem">
                                                                         <Text.Label className="text__label textFormat">Price</Text.Label>
@@ -316,7 +316,7 @@ export default function CreateProductContainer(){
                                 handleSubmit();
                             }}>Submit</Button>
                         </Component>
-                        <pre>{JSON.stringify(values, null, 4)}</pre>
+                        {/* <pre>{JSON.stringify(values, null, 4)}</pre> */}
                     </Form>
                 </Component>
             </Component>
