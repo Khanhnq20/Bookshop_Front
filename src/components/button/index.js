@@ -19,8 +19,6 @@ Button.Delete = ({children,...restProp}) =>{
 
 Button.Update = ({ children, ...restProp }) => {
     return (
-        <a className="button__update" {...restProp}>
-            {children}
-        </a>
+        <input className="button__update" value={children} {...restProp}></input>
     )
 }

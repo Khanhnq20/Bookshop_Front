@@ -21,8 +21,6 @@ export default function Home(){
             <BokoBrand></BokoBrand>
             <Text.Title>Classic Books</Text.Title>
             <ProductContainer></ProductContainer>
-            <FooterContainer></FooterContainer>
-            <CreateProductContainer></CreateProductContainer>
             {/* <CreateGenreContainer></CreateGenreContainer> */}
         </Component>
     )

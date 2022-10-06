@@ -2,7 +2,7 @@
 import './App.css';
 import './scss/main.scss';
 import { BrowserRouter, Outlet, Route, Routes, Navigate } from 'react-router-dom';
-import { Cart, Genres, Home, Login, Payment, ProductDetail } from './pages';
+import { Cart, CreateProduct, Genres, Home, Login, Payment, ProductDetail, UpdateProduct } from './pages';
 import NavigationContainer from './container/navigation';
 import RegisterContainer from './container/register';
 import Component from './components/root';
@@ -29,11 +29,13 @@ function App() {
               <Route exact path='/login' element={<Login></Login>}></Route>
               <Route exact path='/payment' element={<Payment></Payment>}></Route>
               <Route exact path='/register' element={<RegisterContainer></RegisterContainer>}></Route>
+              {/* <Route element={<RouteProtect isLogin={isLogin}><Outlet></Outlet></RouteProtect>}>
+
+              </Route> */}
               <Route exact path='/cart' element={<Cart></Cart>}></Route>
-              <Route exact path='/product' element={<RouteProtect isLogin={isLogin}>
-                  <Outlet></Outlet>
-                </RouteProtect>
-                }>
+              <Route exact path='/createProduct' element={<CreateProduct></CreateProduct>}></Route>
+              <Route exact path='/updateProduct/:id' element={<UpdateProduct></UpdateProduct>}></Route>
+              <Route exact path='/product/:id' element={<Outlet></Outlet>}>
                   <Route index element={<ProductDetail></ProductDetail>}></Route>
               </Route>
               <Route exact path='/genres' element={<Genres></Genres>}></Route>
@@ -41,7 +43,7 @@ function App() {
             </Routes>
 
             <Routes>
-              <Route index element={<FooterContainer></FooterContainer>}></Route>
+              <Route path='/*' element={<FooterContainer></FooterContainer>}></Route>
             </Routes>
         </BrowserRouter>
       </div>
