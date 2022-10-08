@@ -8,23 +8,26 @@
     &__table {
         position: absolute;
         background-color: white;
-        padding: 20px;
+        padding: 10px 10px 0 10px;
         border-top: 1px solid black;
         top:39px;
-        td {
-        padding: 5px 15px;
-        width: 200px;
-        border-bottom:1px solid #F9FAFD;
-        } 
-        transform: translate(-50%);
+        min-width: 450px;
+        transform: translate(-50%,4%);
+        justify-content: stretch;
+        align-items: stretch;
+        border: 1px solid black;
     }
     &__genres{
         position: relative;
     }
     &__genresItem{
-        cursor: pointer;
         color: black;
-        text-decoration: none;
+        cursor: pointer;
+        &:hover {
+            color: blue;
+        }
+        user-select: none;
+        margin: 0;
     }   
     &__frame{
         display: flex;
@@ -92,5 +95,23 @@
         display: flex;
         justify-content: center;
         align-items: center;
+    }
+    &__genresChoose {
+        color: black;
+        white-space: nowrap;
+        cursor: pointer;
+        &:hover{
+            color: blue;
+        }
+        user-select: none;
+    }
+    &__topic{
+        color: black;
+        cursor: pointer;
+        &:hover {
+            color: blue;
+        }
+        user-select: none;
+        margin: 0;
     }
 }

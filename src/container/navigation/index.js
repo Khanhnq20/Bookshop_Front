@@ -2,14 +2,27 @@ import React from "react";
 import Logo from "../../components/logo";
 import Component from "../../components/root";
 import { BsSearch, BsCartFill } from 'react-icons/bs';
+import {Row, Col} from 'react-bootstrap';
 import Form from '../../components/form';
 import Text from "../../components/text";
+import { getGenre } from "../../api/config";
+import { Link } from "react-router-dom";
 
 export default function NavigationContainer({...resProp}){
     const [toggle,setToggle] = React.useState(false);
     const handleToggle = () => {
         setToggle(!toggle);
     }
+    const [genres,setGenres] = React.useState([])
+    React.useEffect(()=>{
+        getGenre().then(response => {
+            const {data} = response;
+            if(Array.isArray(data)){
+                setGenres(data);
+            }
+        })
+    },[])
+    
     return(
         <Component className="nav" {...resProp}>
             <Component.Flex className="nav__frame">
@@ -29,34 +42,31 @@ export default function NavigationContainer({...resProp}){
                 </Component>
                 <Component className="nav__flexItem">
                     <Component.Flex className="nav__categories">
-                        <Component><Text.Link>Home</Text.Link></Component>
-                        <Component><Text.Link>Blog</Text.Link></Component>
+                            <Component>
+                                <Link to="/" style={{ textDecoration: "none" }}>
+                                    <Text className="nav__topic">Home</Text>
+                                </Link>
+                            </Component>
+                        <Component><Text className="nav__topic">Blog</Text></Component>
                         <Component className="nav__genres">
-                            <Text.Link onClick={handleToggle} className="nav__genresItem">Genres</Text.Link>
+                            <Text onClick={handleToggle} className="nav__genresItem">Genres</Text>
                             {toggle && 
-                                <Component.Table className="nav__table">
-                                    <tr>
-                                        <td><Text.Link>Fiction</Text.Link></td>
-                                        <td><Text.Link>Mystery</Text.Link></td>
-                                        <td><Text.Link>Thriller</Text.Link></td>
-                                        <td><Text.Link>Nonfiction</Text.Link></td>
-                                    </tr>
-                                    <tr>
-                                        <td><Text.Link>Historical</Text.Link></td>
-                                        <td><Text.Link>Romance</Text.Link></td>
-                                        <td><Text.Link>Literature</Text.Link></td>
-                                        <td><Text.Link>Best Seller</Text.Link></td>
-                                    </tr>
-                                    <tr>
-                                        <td><Text.Link>Economics & Finance</Text.Link></td>
-                                        <td><Text.Link>Comic</Text.Link></td>
-                                        <td><Text.Link>Self-help</Text.Link></td>
-                                        <td><Text.Link>Novel</Text.Link></td>
-                                    </tr>
-                                </Component.Table>
+                                <Row xs={2} sm={4} className="nav__table">
+                                    {genres.map((item,index) =>{
+                                        return(
+                                            <>
+                                                <Link style={{ textDecoration: "none"}} to={`/filterProduct/${item.id}`}>
+                                                    <Col xs={'6'} sm="3" key={index}>
+                                                        <span><Text className="nav__genresChoose">{item.name}</Text></span>
+                                                    </Col>
+                                                </Link>
+                                            </>
+                                        )
+                                    })}
+                                </Row>
                             }
                         </Component>
-                        <Component><Text.Link>About</Text.Link></Component>
+                        <Component><Text className="nav__topic">About</Text></Component>
                     </Component.Flex>
                 </Component>
                 <Component style={{textAlign:"end"}} className="nav__flexItem">

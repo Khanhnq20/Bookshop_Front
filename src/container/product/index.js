@@ -22,7 +22,7 @@ export default function ProductContainer(){
             })
         });
     }, [])
-
+    
     return(
         <Component>
             <Component className="product">

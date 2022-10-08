@@ -1,0 +1,12 @@
+.filterProduct{
+    &__content{
+        display: flex;
+        gap:30px;
+        justify-content: centerz;
+    }
+    &__listProduct{
+        display: flex;
+        flex-wrap: wrap;
+        gap:10px;
+    }
+}

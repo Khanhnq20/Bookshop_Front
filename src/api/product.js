@@ -8,7 +8,6 @@ const staffInstance = axios.create({
 })
 
 export function createProduct(prop){
-    console.log(prop);
     const formData = serialize(prop, {
         indices: true,
         noFilesWithArrayNotation: false,
@@ -59,6 +58,14 @@ export function updateProductImage(file, productId){
     return staffInstance.put("updateImage", formData ,{
         params:{
             id: productId
+        }
+    })
+}
+
+export function filterProduct(genreId){
+    return staffInstance.get("filterProduct",{
+        params:{
+            id : genreId
         }
     })
 }

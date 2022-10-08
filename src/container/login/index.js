@@ -7,6 +7,7 @@ import Logo from "../../components/logo";
 import {login} from '../../api/config';
 
 
+
 export default function LoginContainer() {
     const [state, setState] = React.useState({
         username: '',
@@ -39,7 +40,7 @@ export default function LoginContainer() {
                             <Text.Subtitle>Don't you have an account? <Text.Link href="aaa">Create an account</Text.Link></Text.Subtitle>
                         </Component.Flex>
                     </Form>
-                <Form.Image src="https://wallpaperaccess.com/full/1098772.jpg" style={{height: '99.8vh', width: '100%'}}></Form.Image>
+                <Form.Image style={{height: '99.8vh', width: '100%'}}></Form.Image>
             </Component>
 
         </Component>

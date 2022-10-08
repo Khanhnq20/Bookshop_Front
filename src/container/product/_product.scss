@@ -48,6 +48,7 @@
         padding: 10px 30px;
         text-align: center;
         text-decoration: none;
+        width: fit-content;
         background-color: white;
         color: black;
         border: 2px solid black;
@@ -72,5 +73,6 @@
         display: flex;
         justify-content: center;
         line-height: 20px;
+        padding: 10px;
     }
 }

@@ -9,6 +9,8 @@
     margin: 10px;
     min-width: auto;
     white-space: nowrap;
+    width: fit-content;
+    user-select: none;
     cursor: pointer;
     &:hover{
         background-color: white;
@@ -27,7 +29,8 @@
             min-width: auto;
             white-space: nowrap;
             cursor: pointer;
-        
+            width: fit-content;
+            user-select: none;
             &:hover {
                 background-color: white;
                 color: #C41E3A;
@@ -42,10 +45,11 @@
             color: white;
             border: 2px solid green;
             border-radius: 5px;
+            width: 80px;
             margin: 10px;
-            min-width: auto;
             white-space: nowrap;
             cursor: pointer;
+            user-select: none;
         
             &:hover {
                 background-color: white;

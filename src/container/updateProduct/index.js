@@ -22,7 +22,7 @@ let productSchema = yup.object().shape({
 })
 
 
-export default function UpdateProductContainer(id) {
+export default function UpdateProductContainer() {
     const [currentIndex, setCurrentIndex] = React.useState(0);
     const [loading, setLoading] = React.useState(false);
     const [imageURL, setImageUrl] = React.useState("")

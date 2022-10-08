@@ -17,15 +17,19 @@
     &__infoFlex{
         display: flex;
         gap: 35px;
-        margin: 20px 0;
-        padding: 10px 0
+        margin: 5px 0;
+        padding: 10px 0;
+        overflow: hidden;
     }
     &__ship{
-        font-size: 45px;
+        font-size: 40px;
         margin-left:30px ;
+        font-weight: 600;
     }
     &__subTitle{
         margin: 0;
+        font-size: 22px;
+        font-weight: 600;
     }
     &__text{
         margin: 5px 0;
