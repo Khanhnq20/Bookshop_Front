@@ -5,8 +5,12 @@ import { BsSearch, BsCartFill } from 'react-icons/bs';
 import {Row, Col} from 'react-bootstrap';
 import Form from '../../components/form';
 import Text from "../../components/text";
-import { getGenre } from "../../api/config";
+import { getGenre, logout } from "../../api/config";
 import { Link } from "react-router-dom";
+import useAthContext from "../../store/authorContext";
+import Button from "../../components/button";
+import {AiOutlineShoppingCart} from "react-icons/ai"
+import { toast } from "react-toastify";
 
 export default function NavigationContainer({...resProp}){
     const [toggle,setToggle] = React.useState(false);
@@ -22,6 +26,7 @@ export default function NavigationContainer({...resProp}){
             }
         })
     },[])
+
     
     return(
         <Component className="nav" {...resProp}>
@@ -72,14 +77,38 @@ export default function NavigationContainer({...resProp}){
                 <Component style={{textAlign:"end"}} className="nav__flexItem">
                     <Component className="nav__last">
                         <Component className="nav__cart">
-                            <BsCartFill></BsCartFill>
+                            <Link to="/cart">
+                                <AiOutlineShoppingCart></AiOutlineShoppingCart>
+                            </Link>
                         </Component>
                         <Component className="nav__signIn">
-                            <Text.Link href="/login">Sign in</Text.Link>
+                            <CheckLogged></CheckLogged>
                         </Component>
                     </Component>
                 </Component>
             </Component.Flex>
         </Component>
     )
+}
+
+function CheckLogged() {
+    const {isLogin, setLogin} = useAthContext();
+
+        const onLogout = () =>{
+        logout().then(()=>{
+            setLogin(false);
+            localStorage.removeItem("cart");
+            toast.success("log out");
+        }).catch(() =>{
+            toast.error("cannot logout")
+        });
+
+    }
+    console.log(isLogin)
+    if(!isLogin){
+        return (
+            <Link to="/auth/login">Sign in</Link>
+        )
+    }
+    return <Button onClick={onLogout}>Log out</Button>   
 }

@@ -1,10 +1,13 @@
 import React from "react";
 import Component from "../../components/root";
-import Form from "../../components/form";
+import FormComponent from "../../components/form";
 import Text from "../../components/text";
 import Button from "../../components/button";
 import Logo from "../../components/logo";
 import {login} from '../../api/config';
+import { Formik } from "formik";
+import { useNavigate } from "react-router-dom";
+import useAthContext from "../../store/authorContext";
 
 
 
@@ -13,6 +16,8 @@ export default function LoginContainer() {
         username: '',
         password: ''
     });
+    const contextHandler = useAthContext();
+    const navigate = useNavigate();
     const changeHandler = (e) =>{
         setState({
             ...state,
@@ -21,28 +26,36 @@ export default function LoginContainer() {
     }
     const submitHandler = (e) =>{
         e.preventDefault();
-        login(state.username, state.password);
+        login(state.username, state.password).then(res => {
+            navigate('/');
+            contextHandler.setLogin(true);
+        });
     }
 
-    return(
+    return(<Formik>
         <Component className="login">
             <Component>
-                    <Form className="login__form" onSubmit={submitHandler}>
+                    <FormComponent className="login__form" onSubmit={submitHandler}>
                         <Component.Flex className="login__flex">
                             <Logo></Logo>
                             <Text.Title>
                                 Welcome to Login
                             </Text.Title>
-                            <Form.Input placeholder="Enter your email..." name="username" onChange={changeHandler}></Form.Input>
-                            <Form.Input placeholder="Enter your password..." name="password" onChange={changeHandler}></Form.Input>
-                            <Form.Input type="submit" value={"Login"} style={{width:"220px"}}></Form.Input>
+                            <FormComponent.Input placeholder="Enter your email..." name="username" onChange={changeHandler}></FormComponent.Input>
+                            <FormComponent.Input placeholder="Enter your password..." name="password" onChange={changeHandler}></FormComponent.Input>
+                            <FormComponent.Input 
+                            type="submit" 
+                            value={"Login"} 
+                            style={{width:"220px"}}
+                            ></FormComponent.Input>
                             <Text.Link href="/register">Forgot your Password?</Text.Link>
                             <Text.Subtitle>Don't you have an account? <Text.Link href="aaa">Create an account</Text.Link></Text.Subtitle>
                         </Component.Flex>
-                    </Form>
-                <Form.Image style={{height: '99.8vh', width: '100%'}}></Form.Image>
+                    </FormComponent>
+                <FormComponent.Image style={{height: '99.8vh', width: '100%'}}></FormComponent.Image>
             </Component>
-
         </Component>
+    </Formik>
     )
 }
+

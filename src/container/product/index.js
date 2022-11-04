@@ -8,6 +8,7 @@ import { deleteProduct, getProduct } from "../../api/product";
 import { Link } from "react-router-dom";
 
 export default function ProductContainer(){
+    const [cart,setCard] = React.useState();
     const [product,setProduct] = React.useState({
         getProduct:[]
     })

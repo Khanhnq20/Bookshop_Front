@@ -14,7 +14,6 @@ import CreateGenreContainer from './container/createGenre';
 
 
 function App() {
-  const {isLogin} = useAuthorContext();
   return (
     <>
       <div className='App'>
@@ -25,15 +24,24 @@ function App() {
             </Routes>
 
             <Routes>
-              <Route exact path='/' element={<Home></Home>}></Route>
-              <Route exact path='/login' element={<Login></Login>}></Route>
-              <Route exact path='/payment' element={<Payment></Payment>}></Route>
-              <Route exact path='/register' element={<RegisterContainer></RegisterContainer>}></Route>
-              {/* <Route element={<RouteProtect isLogin={isLogin}><Outlet></Outlet></RouteProtect>}>
+              <Route path="/auth" element={<RouteAuth>
+                <Outlet></Outlet>
+                </RouteAuth>}>
 
+                <Route exact path='login' element={<Login></Login>}></Route>
+                <Route exact path='payment' element={<Payment></Payment>}></Route>
+                <Route exact path='register' element={<RegisterContainer></RegisterContainer>}></Route>
+              </Route>
+
+              <Route path='/' element={<Home></Home>}></Route>
+              {/* <Route element={<RouteProtect isLogin={isLogin}><Outlet></Outlet></RouteProtect>}>
               </Route> */}
               <Route exact path='/cart' element={<Cart></Cart>}></Route>
-              <Route exact path='/createProduct' element={<CreateProduct></CreateProduct>}></Route>
+              <Route exact path='/createProduct' element={
+                <RouteProtect>
+                  <CreateProduct></CreateProduct>
+                </RouteProtect>
+              }></Route>
               <Route exact path='/updateProduct/:id' element={<UpdateProduct></UpdateProduct>}></Route>
               <Route exact path='/product/:id' element={<Outlet></Outlet>}>
                   <Route index element={<ProductDetail></ProductDetail>}></Route>
@@ -51,14 +59,22 @@ function App() {
     </>
   );
 }
-function RouteProtect({ children, isLogin }) {
-  if (isLogin === false) return <Navigate to="/login"></Navigate>
-
+function RouteProtect({ children }) {
+  const {isLogin} = useAuthorContext();
+  if (!isLogin) return <Navigate to="/auth/login"></Navigate>
   return (
     <Component>
       {children}
     </Component>
   )
+}
+
+function RouteAuth({children, returnUrl}) {
+    const {isLogin} = useAuthorContext();
+    console.log(isLogin);
+  if(!isLogin) return (<>{children}</>);
+
+  return <Navigate to={returnUrl || "/"}></Navigate>
 }
 
 export default App;

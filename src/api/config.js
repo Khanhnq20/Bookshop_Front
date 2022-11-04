@@ -12,18 +12,26 @@ const staffInstance = axios.create({
 })
 
 export function login(username, password){
-    axios.post("api/accounts/login",{emailAddress: username, password: password},{
+    return axios.post("api/accounts/login",{email: username, password: password},{
         baseURL: host,
         withCredentials: 'same-site'
     });
 }
 
 export function register(username, password){
-    axios.post("api/accounts/register",{emailAddress:username,password:password},{
+    axios.post("api/accounts/register",{email:username,password:password},{
         baseURL: host,
         withCredentials: 'same-site'
     });
 }   
+
+export function logout(){
+    return axios.get("api/accounts/logout",{
+        baseURL: host,
+        withCredentials: 'same-site'
+    });
+}
+
 
 export function certificate(){
     return authInstance.get("userPersistence",{

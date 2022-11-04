@@ -6,7 +6,6 @@ import ProductDetailContainer from "../container/productDetail";
 export default function ProductDetail() {
     return(
     <Component style={{position:"relative"}}>
-        <NavigationContainer></NavigationContainer>
         <ProductDetailContainer></ProductDetailContainer>
     </Component>
     )

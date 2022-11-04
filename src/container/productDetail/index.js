@@ -10,19 +10,37 @@ import Form from 'react-bootstrap/Form';
 import { ListGroup,Row, Col} from 'react-bootstrap';
 import { getSingleProduct } from "../../api/product";
 import axios from 'axios';
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { getGenre } from "../../api/config";
+import { useCartContext } from "../../store/cardContext";
+import { useAuthorContext } from "../../store";
+import { toast } from "react-toastify";
 
 export default function ProductDetailContainer() {
+    const [quantity,setQuantity] = React.useState(1);
     const [inventory,setInventory] = React.useState();
     const [genres,setGenres] = React.useState([])
     const locationParams = useParams();
-    const [product, setProduct] = React.useState({});
+    const [product, setProduct] = React.useState({}); 
+      const {isLogin} = useAuthorContext();
+    const [state, functions] = useCartContext();
+    const [error,setError] = React.useState("");
+    const navigate = useNavigate();
+    const [productCart,setProductCart] = React.useState({
+        id: 0,
+        image:"",
+        name:"",
+        type:'',
+        price:0,
+        quantity:0
+    })
+    
     React.useEffect(() => {
         if(locationParams?.id){
             const {id} = locationParams;
             getSingleProduct(id).then(response => {
                 const { data } = response;
+                console.log(data);
                 if(typeof data === 'object'){
                     setProduct(data);
                 }
@@ -37,6 +55,42 @@ export default function ProductDetailContainer() {
             }
         })
     }, []);
+
+    React.useEffect(() => {
+        setProductCart(o => ({...o,image: product?.fileImage,
+            id: product?.id,
+            name:product?.name,quantity:quantity}));
+    }, [product,quantity])
+
+    const handleMinus=()=>{
+        if(quantity === 1){
+            return;
+        }
+        setQuantity(i => --i)
+    }
+    const handlePlus=()=>{
+        if(quantity === 99){
+            return;
+        }
+        setQuantity(o => o + 1)
+    }
+    const handleSubmit=(book)=>{
+        if(isLogin){
+            functions.addToCart(book);
+        }
+        else {
+            toast.warn("Please login first");
+            navigate("/auth/login");
+        }
+    }   
+    const validateInventory = (callback) =>{
+        let error;
+        if(!inventory){
+            error = "Pls check the type"
+            setError(error)
+        }
+        callback(error);
+    }
 
     return(
         <Component.Wrapper className="productDetail">
@@ -73,8 +127,9 @@ export default function ProductDetailContainer() {
                                                     label={item.name}
                                                     name="group1"
                                                     type="radio"
-                                                    onChange={() => {
-                                                        setInventory(item.inventory)
+                                                    onChange={(e) => {
+                                                        setInventory(item.inventory);
+                                                        setProductCart(o =>({...o,type:item?.name,price:item.price}))
                                                     }}
                                                     id={`inline-radio-${++index}`}
                                                 />
@@ -84,16 +139,37 @@ export default function ProductDetailContainer() {
                                     )
                                 })}
                             </Form>
+                            {error && <p style={{color:"red",paddingLeft:"5px"}}>{error}</p>}
                         </Component>
                     </Component>
-                    <Component className="productDetail__quantityForm">
-                        <Component.Span className="productDetail__quantity">
-                            <Component.Span className="productDetail__minus"><BiMinus></BiMinus></Component.Span>
-                            <Component.Span className="productDetail__number">1</Component.Span>
-                            <Component.Span className="productDetail__plus"><BiPlus></BiPlus></Component.Span>
+                    <Component className="productDetail__quantityAdd">
+                        <Component.Span className="productDetail__quantityForm">
+                                <BiMinus style={{cursor:'pointer',marginLeft:'5px'}}
+                                    onClick={handleMinus}
+                                ></BiMinus>
+                                <FormComponent.Input className="productDetail__quantity"
+                                    style={{paddingLeft:'5px'}}
+                                    type='number'
+                                    value={quantity}
+                                    max={99}
+                                    onChange={(i) =>{setQuantity(Number(i.target.value) > 99 ? 99 : i.target.value)}}
+                                ></FormComponent.Input>
+                                <BiPlus style={{cursor:'pointer'}}
+                                    onClick={handlePlus}
+                                ></BiPlus>
                         </Component.Span>
                         <Component.Span>
-                            <Button className="productDetail__button">Add to Cart</Button>
+                            <Button className="productDetail__button"
+                                onClick={()=>{
+                                    validateInventory(error =>{
+                                        console.log(error);
+                                        if(!error){
+                                            handleSubmit(productCart);
+                                            setError("")
+                                        }
+                                    });
+                                }}
+                            >Add to Cart</Button>
                         </Component.Span>
                     </Component>
                     <Component>
@@ -141,39 +217,3 @@ export default function ProductDetailContainer() {
         </Component.Wrapper>
     )
 }
-
-// function ControlledTabs() {
-//     const [key, setKey] = React.useState('home');
-//     const locationParams = useParams();
-
-//     const [product, setProduct] = React.useState({});
-
-//     React.useEffect(() => {
-//         if (locationParams?.id) {
-//             const { id } = locationParams;
-
-//             getSingleProduct(id).then(response => {
-//                 const { data } = response;
-
-//                 if (typeof data === 'object') {
-//                     setProduct(data);
-//                 }
-//             })
-//         }
-//     }, []);
-//     return (
-//         <Tabs
-//             defaultActiveKey="home"
-//             transition={false}
-//             id="noanim-tab-example"
-//             className="mb-3 tab"
-//         >
-//             <Tab eventKey="home" title="Description">
-//                 <Text className="tab__text">{product?.description}</Text>
-//             </Tab>
-//             <Tab eventKey="profile" title="Rating">
-
-//             </Tab>
-//         </Tabs>
-//     );
-// }

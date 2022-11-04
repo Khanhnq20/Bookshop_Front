@@ -4,7 +4,7 @@ import CartContainer from "../container/cart";
 
 export default function Cart(){
     return(
-        <Component>
+        <Component style={{minHeight:'100vh'}}>
             <CartContainer></CartContainer>
         </Component>
     )
