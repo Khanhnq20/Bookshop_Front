@@ -1,7 +1,7 @@
 import React from "react";
 import Logo from "../../components/logo";
 import Component from "../../components/root";
-import { BsSearch, BsCartFill } from 'react-icons/bs';
+import { BsSearch } from 'react-icons/bs';
 import {Row, Col} from 'react-bootstrap';
 import Form from '../../components/form';
 import Text from "../../components/text";
@@ -11,6 +11,7 @@ import useAthContext from "../../store/authorContext";
 import Button from "../../components/button";
 import {AiOutlineShoppingCart} from "react-icons/ai"
 import { toast } from "react-toastify";
+import CartBar from "../cartBar";
 
 export default function NavigationContainer({...resProp}){
     const [toggle,setToggle] = React.useState(false);
@@ -26,9 +27,12 @@ export default function NavigationContainer({...resProp}){
             }
         })
     },[])
-
-    
+    const [show,setShow] = React.useState(false)
+    const handleShowBar = () =>{
+        setShow(true);
+    }
     return(
+        <>
         <Component className="nav" {...resProp}>
             <Component.Flex className="nav__frame">
                 <Component className="nav__flexItem">
@@ -76,10 +80,10 @@ export default function NavigationContainer({...resProp}){
                 </Component>
                 <Component style={{textAlign:"end"}} className="nav__flexItem">
                     <Component className="nav__last">
-                        <Component className="nav__cart">
-                            <Link to="/cart">
-                                <AiOutlineShoppingCart></AiOutlineShoppingCart>
-                            </Link>
+                        <Component className="nav__cart"
+                            onClick={handleShowBar}
+                        >
+                            <AiOutlineShoppingCart></AiOutlineShoppingCart>
                         </Component>
                         <Component className="nav__signIn">
                             <CheckLogged></CheckLogged>
@@ -88,6 +92,9 @@ export default function NavigationContainer({...resProp}){
                 </Component>
             </Component.Flex>
         </Component>
+        <CartBar showBar={show} handleClose={()=>{setShow(false)}}></CartBar>
+        </>
+
     )
 }
 
@@ -104,7 +111,6 @@ function CheckLogged() {
         });
 
     }
-    console.log(isLogin)
     if(!isLogin){
         return (
             <Link to="/auth/login">Sign in</Link>

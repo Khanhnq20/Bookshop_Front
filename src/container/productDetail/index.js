@@ -12,7 +12,7 @@ import { getSingleProduct } from "../../api/product";
 import axios from 'axios';
 import { useNavigate, useParams } from "react-router-dom";
 import { getGenre } from "../../api/config";
-import { useCartContext } from "../../store/cardContext";
+import { useCartContext } from "../../store/cartContext";
 import { useAuthorContext } from "../../store";
 import { toast } from "react-toastify";
 
@@ -22,7 +22,7 @@ export default function ProductDetailContainer() {
     const [genres,setGenres] = React.useState([])
     const locationParams = useParams();
     const [product, setProduct] = React.useState({}); 
-      const {isLogin} = useAuthorContext();
+    const {isLogin} = useAuthorContext();
     const [state, functions] = useCartContext();
     const [error,setError] = React.useState("");
     const navigate = useNavigate();
@@ -40,7 +40,6 @@ export default function ProductDetailContainer() {
             const {id} = locationParams;
             getSingleProduct(id).then(response => {
                 const { data } = response;
-                console.log(data);
                 if(typeof data === 'object'){
                     setProduct(data);
                 }
@@ -49,7 +48,6 @@ export default function ProductDetailContainer() {
         }
         getGenre().then(response => {
             const {data} = response;
-            console.log(data);
             if(Array.isArray(data)){
                 setGenres(data)
             }
@@ -120,8 +118,8 @@ export default function ProductDetailContainer() {
                             <Form style={{ display: "flex" }}>
                                 {product?.type?.map((item,index) => {
                                     return(
-                                        <ListGroup key="inline-radio" className="mb-4">
-                                            <Form.Group key={index} as={ListGroup.Item} style={{ marginRight: "5px" }} className="productDetail__formSelect">
+                                        <ListGroup key={index} className="mb-4">
+                                            <Form.Group as={ListGroup.Item} style={{ marginRight: "5px" }} className="productDetail__formSelect">
                                                 <Form.Check
                                                     inline
                                                     label={item.name}

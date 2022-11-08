@@ -9,8 +9,7 @@ export function Author({children}){
 
     useEffect(() => {
         certificate().then(response =>{
-            console.log(response);
-            const {isLogged} = response; 
+            const {isLogged} = response.data; 
             setLogin(isLogged);
         });
     }, []);

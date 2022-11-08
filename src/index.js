@@ -4,7 +4,7 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {Author} from './store';
-import { CartContext } from './store/cardContext';
+import { CartContext } from './store/cartContext';
 import {ToastContainer} from 'react-toastify'; 
 import 'react-toastify/dist/ReactToastify.css';
 

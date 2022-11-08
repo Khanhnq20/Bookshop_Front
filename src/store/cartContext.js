@@ -15,8 +15,10 @@ const reducer = (state, action) =>{
   }
 }
 
+
+const localCart = JSON.parse(localStorage.getItem?.("cart"));
 export function CartContext({children}) {
-  const [cart, setCart] = React.useState(JSON.parse(localStorage.getItem("cart")));
+  const [cart, setCart] = React.useState(localCart);
   const [loading, setLoading] = React.useState(true);
   const mounting = React.useRef(true);
 
@@ -27,8 +29,8 @@ export function CartContext({children}) {
     },
     addToCart(newItem){
       setCart(o => {
-        if(o.length && o.some(p => this.filter(p, newItem))){
-          return o.map(item => item.id === newItem.id ? newItem : item);
+        if(o?.length && o.some(p => this.filter(p, newItem))){
+          return o.map(item => this.filter(item,newItem) ? newItem : item);
         }
         return [...o, {
           ...newItem,
@@ -45,7 +47,7 @@ export function CartContext({children}) {
     reduceItem(key){
       setCart(o => o.map((item, index) =>{
         if(index === key){
-          if(item.quantity < 1){
+          if(item.quantity < 2){
             this.removeItem(index);
             return item;
           }
@@ -63,9 +65,13 @@ export function CartContext({children}) {
     }
   }
 
-  React.useEffect(() =>{
-    localStorage.setItem("cart",JSON.stringify(cart));
-  },[cart]);
+  React.useEffect(() => {
+    console.log(cart, mounting);
+    if(!mounting.current){
+      localStorage.setItem("cart",JSON.stringify(cart));
+    }
+    mounting.current = false;
+  }, [cart]);
 
   return (
     <CartContextProvider.Provider value={[

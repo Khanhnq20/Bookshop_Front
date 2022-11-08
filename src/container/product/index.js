@@ -14,7 +14,6 @@ export default function ProductContainer(){
     })
     React.useEffect(() => {
         getProduct().then(res => {
-
             const {data} = res;
             console.log(data);
             setProduct({

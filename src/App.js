@@ -2,7 +2,7 @@
 import './App.css';
 import './scss/main.scss';
 import { BrowserRouter, Outlet, Route, Routes, Navigate } from 'react-router-dom';
-import { Cart, CreateProduct, FilterProduct, Genres, Home, Login, Payment, ProductDetail, UpdateProduct } from './pages';
+import { CreateProduct, FilterProduct, Genres, Home, Login, Payment, ProductDetail, UpdateProduct } from './pages';
 import NavigationContainer from './container/navigation';
 import RegisterContainer from './container/register';
 import Component from './components/root';
@@ -29,14 +29,13 @@ function App() {
                 </RouteAuth>}>
 
                 <Route exact path='login' element={<Login></Login>}></Route>
-                <Route exact path='payment' element={<Payment></Payment>}></Route>
                 <Route exact path='register' element={<RegisterContainer></RegisterContainer>}></Route>
               </Route>
 
+              <Route exact path='payment' element={<Payment></Payment>}></Route>
               <Route path='/' element={<Home></Home>}></Route>
               {/* <Route element={<RouteProtect isLogin={isLogin}><Outlet></Outlet></RouteProtect>}>
               </Route> */}
-              <Route exact path='/cart' element={<Cart></Cart>}></Route>
               <Route exact path='/createProduct' element={
                 <RouteProtect>
                   <CreateProduct></CreateProduct>
