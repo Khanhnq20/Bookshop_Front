@@ -12,7 +12,7 @@ import { Link } from "react-router-dom";
 export default function CartBar(prop){
     const [state, functions] = useCartContext();
     // const [show, setShow] = React.useState(false);
-     
+    
     const handleMinus=(index)=>{
         functions.reduceItem(index);
     }
@@ -58,7 +58,7 @@ export default function CartBar(prop){
                                         onClick={() => handlePlus(index)}
                                     ></BiPlus>
                             </Component.Span>
-                            <Text>{item.price} USD</Text>
+                            <Text>{item.total} USD</Text>
                         </Component>
                     </Component>
                 </Component>
@@ -70,7 +70,7 @@ export default function CartBar(prop){
                     Total Fee
                 </Text>
                 <Text style={{fontWeight:600,color:"red",fontSize:"17px"}}>
-                    100 USD
+                    {(state?.cart?.reduce((total, item) => item.total + total, 0)) || 0} VND
                 </Text>
             </Component>
             <Component style={{textAlign:"center"}}>
@@ -79,7 +79,7 @@ export default function CartBar(prop){
                 </Link>
             </Component>
         </Component>
-      </Offcanvas>
+    </Offcanvas>
     </>
     </>
     )

@@ -28,21 +28,31 @@ export function CartContext({children}) {
       && item.type === newItem.type;
     },
     addToCart(newItem){
+      console.log(newItem);
       setCart(o => {
+        let total = this.calculatePriceTotal(newItem?.price, newItem?.quantity);
         if(o?.length && o.some(p => this.filter(p, newItem))){
-          return o.map(item => this.filter(item,newItem) ? newItem : item);
+          return o.map(item => this.filter(item,newItem) ? {
+            ...newItem,
+            total
+          } : item);
         }
         return [...o, {
           ...newItem,
-          quantity: newItem?.quantity || 0
+          quantity: newItem?.quantity || 0,
+          total
         }]
       });
     },
     addItem(key){
-      setCart(o => o.map((item, index) => index === key ? ({
-        ...item,
-        quantity: item.quantity + 1
-      }) : item));
+      setCart(o => o.map((item, index) => {
+        let total = this.calculatePriceTotal(item.price, item.quantity + 1);
+        return index === key ? ({
+          ...item,
+          quantity: item.quantity + 1,
+          total
+        }) : item
+      }));
     },
     reduceItem(key){
       setCart(o => o.map((item, index) =>{
@@ -54,7 +64,8 @@ export function CartContext({children}) {
 
           return {
             ...item,
-            quantity: item.quantity - 1
+            quantity: item.quantity - 1,
+            total: this.calculatePriceTotal(item?.price, item.quantity - 1)
           }
         }
         return item
@@ -62,16 +73,19 @@ export function CartContext({children}) {
     },
     removeItem(key){
       setCart(o => o.filter((_, index) => index !== key));
+    },
+    calculatePriceTotal(singlePrice, quantity){
+      return singlePrice * quantity;
     }
   }
 
   React.useEffect(() => {
-    console.log(cart, mounting);
     if(!mounting.current){
       localStorage.setItem("cart",JSON.stringify(cart));
     }
     mounting.current = false;
   }, [cart]);
+
 
   return (
     <CartContextProvider.Provider value={[

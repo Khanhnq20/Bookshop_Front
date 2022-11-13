@@ -1,0 +1,93 @@
+.payment{
+    width: 100%;
+    min-height: 100vh;
+    &__parent{
+        display: flex;
+        margin: 0 auto;
+        max-width: 1200px;
+        height: 100%;
+    }
+    &__flex-1{
+        flex-grow: 1;
+        width: 50%;
+        padding: 10px 40px 40px 40px;
+        height: 100%;
+        border-right: 1px solid #ced4da;
+    }
+    &__flex-2{
+        width: 50%;
+        flex-grow: 1;
+        padding:10px 40px 40px 40px;
+        height: 100%;
+    }
+    &__gridForm{
+        display: grid;
+        gap:15px;
+        grid-template-columns: auto;
+    }
+    &__productForm{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding:20px 0;
+    }
+    &__productFee{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 10px;
+    }
+    &__deliveryFee{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    &__totalFee{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding:20px 0; 
+    }
+    &__productInfo {
+        display: flex;
+        align-items: center;
+        gap:15px;
+    }
+
+    &__productForm {
+        display: flex;
+        border-bottom: #ced4da solid 1px;
+    }
+    &__productContent{
+        padding: 5px;
+        margin:0;
+    }
+    &__deliveryForm{
+        margin: 20px 0 20px 0;
+        margin-bottom: 50px;
+    }
+    &__20k{
+        padding: 10px;
+        margin: 10px 0 15px 0;
+        border: 1px solid #ced4da;
+        border-radius: 5px;
+    }
+    &__0k{
+        padding: 10px;
+        margin: 10px 0 10px 0;
+        border: 1px solid #ced4da;
+        border-radius: 5px;
+    }
+    &__topic{
+        font-size: 16px;
+        margin: 0;
+    }
+    &__fee{
+        padding: 20px 0 20px 0;
+        border-bottom: 1px solid #ced4da;
+    }
+    &__price{
+        color: red;
+        margin: 0;
+    }
+}
