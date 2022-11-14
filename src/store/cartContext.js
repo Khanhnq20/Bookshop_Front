@@ -2,23 +2,23 @@ import React from 'react'
 
 const CartContextProvider = React.createContext();
 
-const reducer = (state, action) =>{
-  switch (action.type) {
-    case "add to cart":
-      return {
-        ...state, 
-        cart: action.payload
-      };
+// const reducer = (state, action) =>{
+//   switch (action.type) {
+//     case "add to cart":
+//       return {
+//         ...state, 
+//         cart: action.payload
+//       };
   
-    default:
-      return state;
-  }
-}
+//     default:
+//       return state;
+//   }
+// }
 
 
 const localCart = JSON.parse(localStorage.getItem?.("cart"));
 export function CartContext({children}) {
-  const [cart, setCart] = React.useState(localCart);
+  const [cart, setCart] = React.useState(localCart || []);
   const [loading, setLoading] = React.useState(true);
   const mounting = React.useRef(true);
 
@@ -28,7 +28,6 @@ export function CartContext({children}) {
       && item.type === newItem.type;
     },
     addToCart(newItem){
-      console.log(newItem);
       setCart(o => {
         let total = this.calculatePriceTotal(newItem?.price, newItem?.quantity);
         if(o?.length && o.some(p => this.filter(p, newItem))){
@@ -80,6 +79,7 @@ export function CartContext({children}) {
   }
 
   React.useEffect(() => {
+    console.log(cart);
     if(!mounting.current){
       localStorage.setItem("cart",JSON.stringify(cart));
     }

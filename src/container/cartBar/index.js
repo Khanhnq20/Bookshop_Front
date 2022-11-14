@@ -13,13 +13,13 @@ export default function CartBar(prop){
     const [state, functions] = useCartContext();
     // const [show, setShow] = React.useState(false);
     
+    
     const handleMinus=(index)=>{
         functions.reduceItem(index);
     }
     const handlePlus=(index)=>{
         functions.addItem(index);
     }
-
     React.useEffect(() =>{
 
     },[state.cart])
@@ -58,7 +58,7 @@ export default function CartBar(prop){
                                         onClick={() => handlePlus(index)}
                                     ></BiPlus>
                             </Component.Span>
-                            <Text>{item.total} USD</Text>
+                            <Text>{item.total.toLocaleString("en-US")} VND</Text>
                         </Component>
                     </Component>
                 </Component>
@@ -70,7 +70,7 @@ export default function CartBar(prop){
                     Total Fee
                 </Text>
                 <Text style={{fontWeight:600,color:"red",fontSize:"17px"}}>
-                    {(state?.cart?.reduce((total, item) => item.total + total, 0)) || 0} VND
+                    {(state?.cart?.reduce((total, item) => item.total + total, 0)).toLocaleString("en-US") || 0} VND
                 </Text>
             </Component>
             <Component style={{textAlign:"center"}}>

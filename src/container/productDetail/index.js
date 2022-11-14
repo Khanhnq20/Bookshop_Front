@@ -40,6 +40,7 @@ export default function ProductDetailContainer() {
             const {id} = locationParams;
             getSingleProduct(id).then(response => {
                 const { data } = response;
+                console.log(data);
                 if(typeof data === 'object'){
                     setProduct(data);
                 }
@@ -59,6 +60,12 @@ export default function ProductDetailContainer() {
             id: product?.id,
             name:product?.name,quantity:quantity}));
     }, [product,quantity])
+    
+    React.useEffect(() => {
+        if(quantity > inventory){
+            setQuantity(inventory)
+        }
+    }, [inventory,quantity])
 
     const handleMinus=()=>{
         if(quantity === 1){
@@ -67,6 +74,7 @@ export default function ProductDetailContainer() {
         setQuantity(i => --i)
     }
     const handlePlus=()=>{
+        
         if(quantity === 99){
             return;
         }
@@ -131,7 +139,7 @@ export default function ProductDetailContainer() {
                                                     }}
                                                     id={`inline-radio-${++index}`}
                                                 />
-                                                <Text.Price style={{ textAlign: "center" }}>{item.price} USD</Text.Price>
+                                                <Text.Price style={{ textAlign: "center" }}>{item.price?.toLocaleString("en-US")} VND</Text.Price>
                                             </Form.Group>
                                         </ListGroup>
                                     )

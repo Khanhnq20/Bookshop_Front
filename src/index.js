@@ -7,6 +7,7 @@ import {Author} from './store';
 import { CartContext } from './store/cartContext';
 import {ToastContainer} from 'react-toastify'; 
 import 'react-toastify/dist/ReactToastify.css';
+import { ProductContext } from './store/productContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
@@ -15,10 +16,12 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <Author>
-      <CartContext>
-        <App />
-        <ToastContainer></ToastContainer>
-      </CartContext>
+      <ProductContext>
+        <CartContext>
+          <App />
+          <ToastContainer></ToastContainer>
+        </CartContext>
+      </ProductContext>
     </Author>
   </React.StrictMode>
 );

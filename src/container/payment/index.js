@@ -6,6 +6,7 @@ import Form from 'react-bootstrap/Form';
 import * as yup from 'yup';
 import FormComponent from '../../components/form/index';
 import Button from 'react-bootstrap/Button';
+import { useCartContext } from '../../store/cartContext';
 
 let productSchema = yup.object().shape({
     userName: yup.string().required(),
@@ -19,6 +20,15 @@ let productSchema = yup.object().shape({
 
 export default function PaymentContainer(){
     const [deliveryFee,setDeliveryFee] = React.useState(0);
+    const [freeShip,setFreeShip] = React.useState(true);
+    const [state, functions] = useCartContext();
+    React.useEffect(() => {
+        if((state?.cart?.reduce((total,item) => item.total + total,0)) >= 400000){
+            setFreeShip(false);
+        }else{
+            setFreeShip(true)
+        }
+    }, [state.cart])
     return(<Formik
         initialValues={{
             userName : "",
@@ -93,13 +103,13 @@ export default function PaymentContainer(){
                                                     type={"radio"}
                                                     id={`default-radio`}
                                                     name="group1"
-                                                    onChange={()=>{setDeliveryFee(20)}}
-                                                    label={`Product is under 400.000vnd`}
+                                                    onChange={()=>{setDeliveryFee(20000)}}
+                                                    label={`Product is under 400,000 VND`}
                                                 />
                                             </Component>
                                             <Component className='payment__0k'>
                                                 <Form.Check
-                                                    disabled
+                                                    disabled={freeShip}
                                                     type={"radio"}
                                                     name="group1"
                                                     label={`Free ship`}
@@ -156,33 +166,37 @@ export default function PaymentContainer(){
                         {/* state2 */}
                         <Component className="payment__flex-2">
                             <Component>
-                                <Component className = "payment__productForm">
-                                    <Component className="payment__productInfo">
-                                        <FormComponent.Image style={{borderRadius:"8px",overflow:"hidden"}} 
-                                            src="https://tinyurl.com/2mcfxrmt" 
-                                            height="100px" width="100px"
-                                            />
-                                        <Component>
-                                            <Text className="payment__productContent">Name</Text>
-                                            <Text className="payment__productContent">Type</Text>
-                                            <Text className="payment__productContent">Quantity</Text>
+                                {state?.cart?.map((item,index) =>{return(
+                                    <Component>
+                                        <Component className = "payment__productForm" key={index}>
+                                            <Component className="payment__productInfo">
+                                                <FormComponent.Image style={{borderRadius:"8px",overflow:"hidden"}} 
+                                                    src={item.image}
+                                                    height="100px" width="100px"
+                                                    />
+                                                <Component>
+                                                    <Text className="payment__productContent" style={{fontWeight:"600"}}>{item.name}</Text>
+                                                    <Text className="payment__productContent">Type : {item.type}</Text>
+                                                    <Text className="payment__productContent">Quantity : {item.quantity}</Text>
+                                                </Component>
+                                            </Component>
+                                            <Text style={{color:"red"}}>{item.total.toLocaleString("en-US")} VND</Text>
                                         </Component>
                                     </Component>
-                                    <Text>325 USD</Text>
-                                </Component>
+                                )})}
                                 <Component className="payment__fee">
                                     <Component className="payment__productFee">
                                         <Text style={{color:"#717171"}}>Total Product Fee</Text>
-                                        <Text className="payment__price">345 USD</Text>
+                                        <Text className="payment__price">{(state?.cart?.reduce((total,item) => item.total + total,0)).toLocaleString("en-US") || 0} VND</Text>
                                     </Component>
                                     <Component className="payment__deliveryFee">
                                         <Text style={{color:"#717171"}}>Delivery Fee</Text>
-                                        <Text className="payment__price">{deliveryFee} USD</Text>
+                                        <Text className="payment__price">{deliveryFee.toLocaleString("en-US")} VND</Text>
                                     </Component>
                                 </Component>
                                 <Component className="payment__totalFee">
-                                    <Text style={{fontSize:"18px"}}>Total</Text>
-                                    <Text  className="payment__price" style={{fontSize:"18px"}}>543 USD</Text>
+                                    <Text style={{fontSize:"18px",fontWeight:"600"}}>Total</Text>
+                                    <Text  className="payment__price" style={{fontSize:"18px"}}>{((state?.cart?.reduce((total,item) => item.total + total,0)) + deliveryFee).toLocaleString("en-US")} VND</Text>
                                 </Component>
                             </Component>
                         </Component>

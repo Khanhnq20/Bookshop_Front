@@ -28,6 +28,7 @@ export default function ProductContainer(){
             <Component className="product">
                 <Component className="product__list">
                     {product.getProduct.map(e =>{
+                        
                         return (<Form.Item className="product__form">
                                     <Link to={{
                                         pathname: `/product/${e.id}`
