@@ -1,7 +1,7 @@
 import React from "react";
 import Logo from "../../components/logo";
 import Component from "../../components/root";
-import { BsSearch } from 'react-icons/bs';
+import { BsArrowCounterclockwise, BsSearch } from 'react-icons/bs';
 import {Row, Col} from 'react-bootstrap';
 import Form from '../../components/form';
 import Text from "../../components/text";
@@ -12,6 +12,7 @@ import Button from "../../components/button";
 import {AiOutlineShoppingCart} from "react-icons/ai"
 import { toast } from "react-toastify";
 import CartBar from "../cartBar";
+import { useCookies } from 'react-cookie';
 
 export default function NavigationContainer({...resProp}){
     const [toggle,setToggle] = React.useState(false);
@@ -99,12 +100,25 @@ export default function NavigationContainer({...resProp}){
 }
 
 function CheckLogged() {
+    const [cookies, _,removeCookies] = useCookies(['jwt','r_jwt']);
     const {isLogin, setLogin} = useAthContext();
 
         const onLogout = () =>{
         logout().then(()=>{
             setLogin(false);
             localStorage.removeItem("cart");
+            removeCookies("r_jwt",{
+                path:"/",
+                httpOnly: true,
+                secure: true,
+                sameSite: "none",
+            });
+            removeCookies("jwt",{
+                path:"/",
+                httpOnly: true,
+                secure: true,
+                sameSite: "none",
+            });
             toast.success("log out");
         }).catch(() =>{
             toast.error("cannot logout")

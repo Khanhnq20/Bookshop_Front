@@ -8,6 +8,7 @@ import { CartContext } from './store/cartContext';
 import {ToastContainer} from 'react-toastify'; 
 import 'react-toastify/dist/ReactToastify.css';
 import { ProductContext } from './store/productContext';
+import { CookiesProvider } from 'react-cookie';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
@@ -15,14 +16,16 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 
 root.render(
   <React.StrictMode>
-    <Author>
-      <ProductContext>
-        <CartContext>
-          <App />
-          <ToastContainer></ToastContainer>
-        </CartContext>
-      </ProductContext>
-    </Author>
+    <CookiesProvider>
+      <Author>
+        <ProductContext>
+          <CartContext>
+            <App />
+            <ToastContainer></ToastContainer>
+          </CartContext>
+        </ProductContext>
+      </Author>
+    </CookiesProvider>
   </React.StrictMode>
 );
 

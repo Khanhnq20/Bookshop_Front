@@ -49,7 +49,7 @@ export default function LoginContainer() {
                             style={{width:"220px"}}
                             ></FormComponent.Input>
                             <Text.Link href="/register">Forgot your Password?</Text.Link>
-                            <Text.Subtitle>Don't you have an account? <Text.Link href="aaa">Create an account</Text.Link></Text.Subtitle>
+                            <Text.Subtitle>Don't you have an account? <Text.Link href="/auth/register">Create an account</Text.Link></Text.Subtitle>
                         </Component.Flex>
                     </FormComponent>
                 <FormComponent.Image style={{height: '99.8vh', width: '100%'}}></FormComponent.Image>

@@ -18,8 +18,8 @@ export function login(username, password){
     });
 }
 
-export function register(username, password){
-    axios.post("api/accounts/register",{email:username,password:password},{
+export function register(email, password,name,dayOfBirth,phoneNumber,gender){
+    return axios.post("api/accounts/register/user",{email:email,password:password,name:name,dayOfBirth:dayOfBirth,phoneNumber:phoneNumber,gender:gender},{
         baseURL: host,
         withCredentials: 'same-site'
     });
