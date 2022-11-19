@@ -7,7 +7,7 @@ import Logo from "../../components/logo";
 import {login} from '../../api/config';
 import { Formik } from "formik";
 import { useNavigate } from "react-router-dom";
-import useAthContext from "../../store/authorContext";
+import {useAthContext} from "../../store/authorContext";
 
 
 

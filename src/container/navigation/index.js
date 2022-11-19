@@ -7,19 +7,18 @@ import Form from '../../components/form';
 import Text from "../../components/text";
 import { getGenre, logout } from "../../api/config";
 import { Link } from "react-router-dom";
-import useAthContext from "../../store/authorContext";
+import {useAthContext} from "../../store/authorContext";
 import Button from "../../components/button";
 import {AiOutlineShoppingCart} from "react-icons/ai"
 import { toast } from "react-toastify";
 import CartBar from "../cartBar";
-import { useCookies } from 'react-cookie';
+import { useCartContext } from "../../store/cartContext";
 
 export default function NavigationContainer({...resProp}){
     const [toggle,setToggle] = React.useState(false);
-    const handleToggle = () => {
-        setToggle(!toggle);
-    }
-    const [genres,setGenres] = React.useState([])
+    const [show,setShow] = React.useState(false);
+    const [genres,setGenres] = React.useState([]);
+    const [state,functions] = useCartContext();
     React.useEffect(()=>{
         getGenre().then(response => {
             const {data} = response;
@@ -28,10 +27,13 @@ export default function NavigationContainer({...resProp}){
             }
         })
     },[])
-    const [show,setShow] = React.useState(false)
+    const handleToggle = () => {
+        setToggle(!toggle);
+    }
     const handleShowBar = () =>{
         setShow(true);
     }
+
     return(
         <>
         <Component className="nav" {...resProp}>
@@ -84,7 +86,8 @@ export default function NavigationContainer({...resProp}){
                         <Component className="nav__cart"
                             onClick={handleShowBar}
                         >
-                            <AiOutlineShoppingCart></AiOutlineShoppingCart>
+                            <AiOutlineShoppingCart className="nav__cartIcon"></AiOutlineShoppingCart>
+                            <Component className="nav__cartQuantity">{state?.cart?.length}</Component>
                         </Component>
                         <Component className="nav__signIn">
                             <CheckLogged></CheckLogged>
@@ -100,25 +103,12 @@ export default function NavigationContainer({...resProp}){
 }
 
 function CheckLogged() {
-    const [cookies, _,removeCookies] = useCookies(['jwt','r_jwt']);
     const {isLogin, setLogin} = useAthContext();
 
         const onLogout = () =>{
         logout().then(()=>{
             setLogin(false);
             localStorage.removeItem("cart");
-            removeCookies("r_jwt",{
-                path:"/",
-                httpOnly: true,
-                secure: true,
-                sameSite: "none",
-            });
-            removeCookies("jwt",{
-                path:"/",
-                httpOnly: true,
-                secure: true,
-                sameSite: "none",
-            });
             toast.success("log out");
         }).catch(() =>{
             toast.error("cannot logout")

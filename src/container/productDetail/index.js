@@ -13,7 +13,7 @@ import axios from 'axios';
 import { useNavigate, useParams } from "react-router-dom";
 import { getGenre } from "../../api/config";
 import { useCartContext } from "../../store/cartContext";
-import { useAuthorContext } from "../../store";
+import { useAthContext } from "../../store";
 import { toast } from "react-toastify";
 
 export default function ProductDetailContainer() {
@@ -22,7 +22,7 @@ export default function ProductDetailContainer() {
     const [genres,setGenres] = React.useState([])
     const locationParams = useParams();
     const [product, setProduct] = React.useState({}); 
-    const {isLogin} = useAuthorContext();
+    const {isLogin} = useAthContext();
     const [state, functions] = useCartContext();
     const [error,setError] = React.useState("");
     const navigate = useNavigate();

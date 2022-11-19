@@ -208,7 +208,6 @@ export default function UpdateProductContainer() {
                 {({ values, touched, errors, handleSubmit, handleChange, handleBlur, setFieldValue }) => {
                     return <Component className="createProduct">
                         {/* <pre>{JSON.stringify(productSingle, null, 4)}</pre> */}
-                        <pre>{JSON.stringify(values, null, 4)}</pre>
                         <Component>
                             <Component>
                                 <Text.Title>Update Product</Text.Title>

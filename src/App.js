@@ -2,15 +2,14 @@
 import './App.css';
 import './scss/main.scss';
 import { BrowserRouter, Outlet, Route, Routes, Navigate } from 'react-router-dom';
-import { CreateProduct, FilterProduct, Genres, Home, Login, Payment, ProductDetail, UpdateProduct } from './pages';
+import { CreateProduct, FilterProduct, Genres, Home, Login, Payment, PaymentSuccess, ProductDetail, UpdateProduct } from './pages';
 import NavigationContainer from './container/navigation';
 import RegisterContainer from './container/register';
 import Component from './components/root';
 import React from 'react';
-import {useAuthorContext} from "./store";
+import {useAthContext} from "./store";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import FooterContainer from './container/footer';
-import CreateGenreContainer from './container/createGenre';
 
 
 function App() {
@@ -33,6 +32,7 @@ function App() {
               </Route>
 
               <Route exact path='payment' element={<Payment></Payment>}></Route>
+              <Route exact path='payment/success' element={<PaymentSuccess></PaymentSuccess>}></Route>
               <Route path='/' element={<Home></Home>}></Route>
               {/* <Route element={<RouteProtect isLogin={isLogin}><Outlet></Outlet></RouteProtect>}>
               </Route> */}
@@ -59,7 +59,7 @@ function App() {
   );
 }
 function RouteProtect({ children }) {
-  const {isLogin} = useAuthorContext();
+  const {isLogin} = useAthContext();
   if (!isLogin) return <Navigate to="/auth/login"></Navigate>
   return (
     <Component>
@@ -69,8 +69,8 @@ function RouteProtect({ children }) {
 }
 
 function RouteAuth({children, returnUrl}) {
-    const {isLogin} = useAuthorContext();
-    console.log(isLogin);
+    const {isLogin} = useAthContext();
+
   if(!isLogin) return (<>{children}</>);
 
   return <Navigate to={returnUrl || "/"}></Navigate>

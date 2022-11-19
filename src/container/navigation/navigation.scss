@@ -6,6 +6,7 @@
     padding: 8px 5px;
     width: 100%;
     z-index: 100;
+    box-shadow: 0 3px 2px -2px lightgray;
     &__table {
         position: absolute;
         background-color: white;
@@ -114,5 +115,19 @@
         }
         user-select: none;
         margin: 0;
+    }
+    &__cartIcon{
+        font-size: 22px;
+        display: inline-block;
+    }
+    &__cartQuantity{
+        display: inline-block;
+        background-color: #cc1e1e;
+        padding: 1px 6px 1px 6px;
+        color: white;
+        font-size: 11px;
+        border-radius: 50%;
+        overflow: hidden;
+        transform: translate(-10px,-4px);
     }
 }

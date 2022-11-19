@@ -1,1 +1,1 @@
-export {default as useAuthorContext, Author} from "./authorContext";
+export * from "./authorContext";

@@ -73,7 +73,7 @@ export default function CreateProductContainer(){
         createProduct(formSubmit);
     }}
     >
-        {({values,touched,errors,handleSubmit,handleChange, handleBlur,handleReset, setFieldValue}) =>{
+        {({values,touched,errors,handleSubmit,handleChange, handleBlur,handleReset,setFieldValue}) =>{
             return <Component className="createProduct">
                 <Component>
                     <Component>

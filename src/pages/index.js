@@ -6,3 +6,4 @@ export {default as Payment} from './payment';
 export {default as CreateProduct} from './createProduct';
 export {default as UpdateProduct} from './updateProduct';
 export {default as FilterProduct} from './filterProduct';
+export {default as PaymentSuccess} from './paymentSuccess';

@@ -2,20 +2,6 @@ import React from 'react'
 
 const CartContextProvider = React.createContext();
 
-// const reducer = (state, action) =>{
-//   switch (action.type) {
-//     case "add to cart":
-//       return {
-//         ...state, 
-//         cart: action.payload
-//       };
-  
-//     default:
-//       return state;
-//   }
-// }
-
-
 const localCart = JSON.parse(localStorage.getItem?.("cart"));
 export function CartContext({children}) {
   const [cart, setCart] = React.useState(localCart || []);
