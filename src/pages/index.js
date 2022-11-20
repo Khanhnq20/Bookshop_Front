@@ -7,3 +7,6 @@ export {default as CreateProduct} from './createProduct';
 export {default as UpdateProduct} from './updateProduct';
 export {default as FilterProduct} from './filterProduct';
 export {default as PaymentSuccess} from './paymentSuccess';
+export {default as UserManagement} from './userManagement';
+export {default as StaffManagement} from './staffManagement';
+export {default as Personal} from './personal';

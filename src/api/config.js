@@ -6,10 +6,23 @@ const authInstance = axios.create({
     withCredentials:'same-site'
 })
 
+
 const staffInstance = axios.create({
     baseURL: `${host}/api/staff`,
     withCredentials:'same-site'
 })
+
+export function getPersonal(id){
+    return authInstance.get("getPersonal",{params:{
+        id
+    }});
+}
+
+export function getRole(id){
+    return authInstance.get("getRole",{params:{
+        id
+    }});
+}
 
 export function login(username, password){
     return axios.post("api/accounts/login",{email: username, password: password},{

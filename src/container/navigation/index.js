@@ -1,18 +1,19 @@
 import React from "react";
 import Logo from "../../components/logo";
 import Component from "../../components/root";
-import { BsArrowCounterclockwise, BsSearch } from 'react-icons/bs';
+import { BsSearch } from 'react-icons/bs';
 import {Row, Col} from 'react-bootstrap';
 import Form from '../../components/form';
 import Text from "../../components/text";
 import { getGenre, logout } from "../../api/config";
 import { Link } from "react-router-dom";
 import {useAthContext} from "../../store/authorContext";
-import Button from "../../components/button";
 import {AiOutlineShoppingCart} from "react-icons/ai"
 import { toast } from "react-toastify";
 import CartBar from "../cartBar";
 import { useCartContext } from "../../store/cartContext";
+import FormComponent from "../../components/form";
+import Dropdown from 'react-bootstrap/Dropdown';
 
 export default function NavigationContainer({...resProp}){
     const [toggle,setToggle] = React.useState(false);
@@ -96,7 +97,11 @@ export default function NavigationContainer({...resProp}){
                 </Component>
             </Component.Flex>
         </Component>
-        <CartBar showBar={show} handleClose={()=>{setShow(false)}}></CartBar>
+        <Component>
+            <CartBar 
+            showBar={show} 
+            handleClose={()=>{setShow(false)}}></CartBar>
+        </Component>
         </>
 
     )
@@ -105,20 +110,60 @@ export default function NavigationContainer({...resProp}){
 function CheckLogged() {
     const {isLogin, setLogin} = useAthContext();
 
-        const onLogout = () =>{
-        logout().then(()=>{
-            setLogin(false);
-            localStorage.removeItem("cart");
-            toast.success("log out");
-        }).catch(() =>{
-            toast.error("cannot logout")
-        });
-
-    }
     if(!isLogin){
         return (
             <Link to="/auth/login">Sign in</Link>
         )
     }
-    return <Button onClick={onLogout}>Log out</Button>   
+    return(
+        <AvatarDropDown></AvatarDropDown>
+    )
+    // return <Button onClick={onLogout}>Log out</Button>   
+}
+
+function AvatarDropDown() {
+        const {isLogin, setLogin} = useAthContext();
+        const {userID} = useAthContext();
+            const onLogout = () =>{
+        logout().then(()=>{
+            setLogin(false);
+            toast.success("Log out");
+            localStorage.removeItem("cart");
+        }).catch(() =>{
+            toast.error("cannot logout")
+        });
+
+    }
+    return (
+    <Dropdown>
+        <Dropdown.Toggle style={{background:"none",color:"none",border:"none",padding:0,width:"40px",boxShadow:"none"}} variant="success" id="dropdown-basic">
+            <FormComponent.Image 
+            style={{margin:0,padding:0}}
+            height="40px"
+            weight="40px"
+            src="https://thumbs.dreamstime.com/b/male-avatar-icon-flat-style-male-user-icon-cartoon-man-avatar-hipster-vector-stock-91462914.jpg"
+            
+            />
+        </Dropdown.Toggle>
+
+        <Dropdown.Menu>
+            <Dropdown.Item>
+                <Link to={`/personal/${userID}`}style={{textDecoration: "none",color:"black"}}>
+                    Personal
+                </Link>
+            </Dropdown.Item>
+            <Dropdown.Item>
+                <Link to="/userManagement" style={{textDecoration: "none",color:"black"}}>
+                    User Management
+                </Link>
+            </Dropdown.Item>
+            <Dropdown.Item>
+                <Link to="/staffManagement" style={{textDecoration: "none",color:"black"}}>
+                    Staff Management
+                </Link>
+            </Dropdown.Item>
+            <Dropdown.Item onClick={onLogout}>Log out</Dropdown.Item>
+        </Dropdown.Menu>
+    </Dropdown>
+    );
 }

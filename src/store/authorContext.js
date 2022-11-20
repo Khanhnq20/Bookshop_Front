@@ -7,7 +7,7 @@ const AuthorContext = createContext();
 export function Author({children}){
     const [isLogin,setLogin] = React.useState();
     const [userID, setUserID] = React.useState();
-
+    
     useEffect(() => {
         certificate().then(response =>{
             const {isLogged, userId} = response.data; 

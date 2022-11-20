@@ -2,7 +2,7 @@
 import './App.css';
 import './scss/main.scss';
 import { BrowserRouter, Outlet, Route, Routes, Navigate } from 'react-router-dom';
-import { CreateProduct, FilterProduct, Genres, Home, Login, Payment, PaymentSuccess, ProductDetail, UpdateProduct } from './pages';
+import { CreateProduct, FilterProduct, Genres, Home, Login, Payment, PaymentSuccess, Personal, ProductDetail, StaffManagement, UpdateProduct, UserManagement } from './pages';
 import NavigationContainer from './container/navigation';
 import RegisterContainer from './container/register';
 import Component from './components/root';
@@ -30,9 +30,19 @@ function App() {
                 <Route exact path='login' element={<Login></Login>}></Route>
                 <Route exact path='register' element={<RegisterContainer></RegisterContainer>}></Route>
               </Route>
+              
+              <Route exact path='payment' element={
+                <RouteProtect>
+                  <Payment></Payment>
+                </RouteProtect>
+              }></Route>
 
-              <Route exact path='payment' element={<Payment></Payment>}></Route>
-              <Route exact path='payment/success' element={<PaymentSuccess></PaymentSuccess>}></Route>
+              <Route exact path='payment/success' element={
+                <RouteProtect>
+                  <PaymentSuccess></PaymentSuccess>
+                </RouteProtect>
+              }></Route>
+
               <Route path='/' element={<Home></Home>}></Route>
               {/* <Route element={<RouteProtect isLogin={isLogin}><Outlet></Outlet></RouteProtect>}>
               </Route> */}
@@ -48,8 +58,13 @@ function App() {
               <Route exact path='/filterProduct/:id' element={<FilterProduct></FilterProduct>}></Route>
               <Route exact path='/genres' element={<Genres></Genres>}></Route>
               <Route path="/*" element={<h1>404: Error</h1>}></Route>
-            </Routes>
 
+              <Route path='/userManagement' element={<UserManagement></UserManagement>}></Route>
+              <Route path='/staffManagement' element={<StaffManagement></StaffManagement>}></Route>
+              <Route path='/personal/:id' element={<Personal></Personal>}></Route>
+            </Routes>
+            
+            
             <Routes>
               <Route path='/*' element={<FooterContainer></FooterContainer>}></Route>
             </Routes>

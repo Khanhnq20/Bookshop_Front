@@ -75,7 +75,7 @@ export default function CartBar(prop){
             </Component>
             <Component style={{textAlign:"center"}}>
                 <Link to='/payment'>
-                    <Button variant="danger" style={{margin:"0 20px 20px 20px"}}>Go to the Payment</Button>
+                    <Button onClick={prop.handleClose} variant="danger" style={{margin:"0 20px 20px 20px"}}>Go to the Payment</Button>
                 </Link>
             </Component>
         </Component>

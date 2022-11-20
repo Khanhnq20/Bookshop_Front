@@ -1,4 +1,4 @@
-import { Formik, FieldArray } from 'formik';
+import { Formik } from 'formik';
 import React from "react";
 import Component from "../../components/root";
 import Text from "../../components/text";
@@ -75,6 +75,7 @@ export default function PaymentContainer(){
                 ,values.phoneNumber,values.deliveryFee,getDate(),
                 state?.cart?.map((item) => new purchasedProducts(item.id
                     ,item.type,item.quantity,item.total)))).then(res => {
+                        localStorage.removeItem("cart");
                         const link = res.data;
                         window.location.replace(link);
                     })
