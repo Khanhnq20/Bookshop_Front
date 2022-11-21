@@ -2,6 +2,7 @@ import React from 'react';
 import Component from '../../components/root';
 import Table from 'react-bootstrap/Table';
 import { getUser } from '../../api/admin';
+import Button from 'react-bootstrap/Button';
 
 const UserManagementContainer = () => {
     const [user,setUser] = React.useState([]);
@@ -30,7 +31,7 @@ const UserManagementContainer = () => {
                             <td key={index}>{index+1}</td>
                             <td>{item.name}</td>
                             <td>{item.email}</td>
-                            <td>@mdo</td>
+                            <td><Button variant="primary">Detail</Button></td>
                             </tr>
                         </tbody>
                     )

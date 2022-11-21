@@ -14,6 +14,12 @@ export function getStaff(){
     return adminInstance.get("getStaff");
 }
 
+export function getSingleUser(id){
+    return adminInstance.get("getSingleUser",{params:{
+        id
+    }});
+}
+
 export function registerStaff(email, password,name,dayOfBirth,phoneNumber,gender){
     return axios.post("api/accounts/register/staff",{email:email,password:password,name:name,dayOfBirth:dayOfBirth,phoneNumber:phoneNumber,gender:gender},{
         baseURL: host,
@@ -21,3 +27,12 @@ export function registerStaff(email, password,name,dayOfBirth,phoneNumber,gender
     });
 } 
 
+export function getPurchaseHistory(){
+    return adminInstance.get("getPurchaseHistory");
+}
+
+export function getSinglePurchaseHistory(id){
+    return adminInstance.get("getSinglePurchaseHistory",{params:{
+        id
+    }});
+}

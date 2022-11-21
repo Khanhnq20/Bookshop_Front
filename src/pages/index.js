@@ -10,3 +10,5 @@ export {default as PaymentSuccess} from './paymentSuccess';
 export {default as UserManagement} from './userManagement';
 export {default as StaffManagement} from './staffManagement';
 export {default as Personal} from './personal';
+export {default as PurchaseHistory} from './purchaseHistory';
+export {default as PurchaseHistoryDetail} from './purchaseHistoryDetail';

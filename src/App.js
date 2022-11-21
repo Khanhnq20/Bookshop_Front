@@ -2,7 +2,7 @@
 import './App.css';
 import './scss/main.scss';
 import { BrowserRouter, Outlet, Route, Routes, Navigate } from 'react-router-dom';
-import { CreateProduct, FilterProduct, Genres, Home, Login, Payment, PaymentSuccess, Personal, ProductDetail, StaffManagement, UpdateProduct, UserManagement } from './pages';
+import { CreateProduct, FilterProduct, Genres, Home, Login, Payment, PaymentSuccess, Personal, ProductDetail, PurchaseHistory, PurchaseHistoryDetail, StaffManagement, UpdateProduct, UserManagement } from './pages';
 import NavigationContainer from './container/navigation';
 import RegisterContainer from './container/register';
 import Component from './components/root';
@@ -62,6 +62,8 @@ function App() {
               <Route path='/userManagement' element={<UserManagement></UserManagement>}></Route>
               <Route path='/staffManagement' element={<StaffManagement></StaffManagement>}></Route>
               <Route path='/personal/:id' element={<Personal></Personal>}></Route>
+              <Route path='/purchaseHistory' element={<PurchaseHistory></PurchaseHistory>}></Route>
+              <Route path='/purchaseHistory/detail/:id' element={<PurchaseHistoryDetail></PurchaseHistoryDetail>}></Route>
             </Routes>
             
             

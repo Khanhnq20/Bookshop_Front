@@ -162,6 +162,11 @@ function AvatarDropDown() {
                     Staff Management
                 </Link>
             </Dropdown.Item>
+            <Dropdown.Item>
+                <Link to="/purchaseHistory" style={{textDecoration: "none",color:"black"}}>
+                    Purchase History
+                </Link>
+            </Dropdown.Item>
             <Dropdown.Item onClick={onLogout}>Log out</Dropdown.Item>
         </Dropdown.Menu>
     </Dropdown>
