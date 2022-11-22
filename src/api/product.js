@@ -4,7 +4,10 @@ const host = "https://localhost:5001";
 
 const staffInstance = axios.create({
     baseURL: `${host}/api/staff`,
-    withCredentials: 'same-site'
+    withCredentials: 'same-site',
+        headers: {
+        Authorization: `${localStorage.getItem("access")}`
+    }
 })
 
 export function createProduct(prop){

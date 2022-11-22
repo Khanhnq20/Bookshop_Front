@@ -27,30 +27,32 @@ const PersonalContainer = () => {
             <Component className="personal__user">
                 <FaUserCircle style={{background:"white",overflow:"hidden",borderRadius:"50%",color:"#696969",border:"3px solid white"}}></FaUserCircle>
             </Component>
-            <Component className="pSuccess__content">
-                <Text>Role</Text>
-                <Text.Info>{role}</Text.Info>
-            </Component>
-            <Component className="pSuccess__content">
-                <Text>User Name</Text>
-                <Text.Info>{user?.name}</Text.Info>
-            </Component>
-            <Component className="pSuccess__content">
-                <Text>Email</Text>
-                <Text.Info>{user?.email}</Text.Info>
-            </Component>
-            <Component className="pSuccess__content">
-                <Text>Gender</Text>
-                <Text.Info>{user?.gender}</Text.Info>
-            </Component>
-            <Component className="pSuccess__content">
-                <Text>Day of Birth</Text>
-                <Text.Info>{(user?.dayOfBirth)?.slice(0,10)}</Text.Info>
-            </Component>
-            <Component className="pSuccess__content">
-                <Text>Phone Number</Text>
-                <Text.Info>{user?.phoneNumber}</Text.Info>
-            </Component>
+            <Component.Flex className="personal__content">
+                <Component className="pSuccess__content">
+                    <Text>Role</Text>
+                    <Text.Info>{role}</Text.Info>
+                </Component>
+                <Component className="pSuccess__content">
+                    <Text>User Name</Text>
+                    <Text.Info>{user?.name}</Text.Info>
+                </Component>
+                <Component className="pSuccess__content">
+                    <Text>Email</Text>
+                    <Text.Info>{user?.email}</Text.Info>
+                </Component>
+                <Component className="pSuccess__content">
+                    <Text>Gender</Text>
+                    <Text.Info>{user?.gender}</Text.Info>
+                </Component>
+                <Component className="pSuccess__content">
+                    <Text>Day of Birth</Text>
+                    <Text.Info>{(user?.dayOfBirth)?.slice(0,10)}</Text.Info>
+                </Component>
+                <Component className="pSuccess__content">
+                    <Text>Phone Number</Text>
+                    <Text.Info>{user?.phoneNumber}</Text.Info>
+                </Component>
+            </Component.Flex>
         </Component>
     </Component>
 }

@@ -3,6 +3,7 @@ import Component from '../../components/root';
 import Table from 'react-bootstrap/Table';
 import { getUser } from '../../api/admin';
 import Button from 'react-bootstrap/Button';
+import { Link } from "react-router-dom";
 
 const UserManagementContainer = () => {
     const [user,setUser] = React.useState([]);
@@ -31,7 +32,15 @@ const UserManagementContainer = () => {
                             <td key={index}>{index+1}</td>
                             <td>{item.name}</td>
                             <td>{item.email}</td>
-                            <td><Button variant="primary">Detail</Button></td>
+                            <td>
+                                    <Link to={`/personal/${item.id}`}>
+                                        <Button variant="primary">Detail</Button>
+                                    </Link>
+                                    
+                                    <Link style={{marginLeft:"10px"}} to={`/changePassword/${item.id}`}>
+                                        <Button variant="success">Change Password</Button>
+                                    </Link>
+                                </td>
                             </tr>
                         </tbody>
                     )

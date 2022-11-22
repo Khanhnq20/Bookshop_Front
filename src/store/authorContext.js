@@ -7,17 +7,18 @@ const AuthorContext = createContext();
 export function Author({children}){
     const [isLogin,setLogin] = React.useState();
     const [userID, setUserID] = React.useState();
+    const [role, setRole] = React.useState();
     
     useEffect(() => {
         certificate().then(response =>{
-            const {isLogged, userId} = response.data; 
-            console.log(response.data);
+            const {isLogged, userId,identity} = response.data; 
             setLogin(isLogged);
             setUserID(userId);
+            setRole(identity);
         });
     }, []);
     return (
-        <AuthorContext.Provider value={{isLogin,userID,setLogin}} >
+        <AuthorContext.Provider value={{isLogin,userID,role,setLogin}} >
             {children}
         </AuthorContext.Provider>
     )

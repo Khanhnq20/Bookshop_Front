@@ -8,6 +8,7 @@ import {login} from '../../api/config';
 import { Formik } from "formik";
 import { useNavigate } from "react-router-dom";
 import {useAthContext} from "../../store/authorContext";
+import { toast } from "react-toastify";
 
 
 
@@ -24,10 +25,14 @@ export default function LoginContainer() {
             [e.target.name]: e.target.value
         });
     }
+
     const submitHandler = (e) =>{
         e.preventDefault();
         login(state.username, state.password).then(res => {
+            let data = res.data;
+            localStorage.setItem("access",data?.token)
             navigate('/');
+            toast.success(`Hello, ${contextHandler?.role}`)
             contextHandler.setLogin(true);
         });
     }

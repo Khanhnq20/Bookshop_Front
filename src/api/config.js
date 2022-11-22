@@ -3,13 +3,18 @@ const host = "https://localhost:5001";
 
 const authInstance = axios.create({
     baseURL: `${host}/api/accounts`,
-    withCredentials:'same-site'
+    withCredentials:'same-site',
+        headers: {
+        Authorization: `Bearer ${localStorage.getItem("access")}`
+    }
 })
-
-
+ 
 const staffInstance = axios.create({
     baseURL: `${host}/api/staff`,
-    withCredentials:'same-site'
+    withCredentials:'same-site',
+    headers: {
+        Authorization: `Bearer ${localStorage.getItem("access")}`
+    }
 })
 
 export function getPersonal(id){
@@ -54,7 +59,9 @@ export function certificate(){
 
 export function createGenre(genre){
     return staffInstance.post("createGenre",{name:genre},{
+        
     });
+
 }
 
 export function getGenre(){
