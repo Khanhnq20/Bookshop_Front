@@ -2,7 +2,7 @@
 import './App.css';
 import './scss/main.scss';
 import { BrowserRouter, Outlet, Route, Routes, Navigate } from 'react-router-dom';
-import { ChangePassword, CreateProduct, FilterProduct, Genres, Home, Login, Payment, PaymentSuccess, Personal, ProductDetail, PurchaseHistory, PurchaseHistoryDetail, StaffManagement, UpdateProduct, UserManagement } from './pages';
+import { ChangePassword, CreateProduct, FilterProduct, Genres, GetPurchased, Home, Login, Payment, PaymentSuccess, Personal, ProductDetail, ProductManagement, PurchaseHistory, PurchaseHistoryDetail, RegisterStaff, StaffManagement, UpdateProduct, UserManagement } from './pages';
 import NavigationContainer from './container/navigation';
 import RegisterContainer from './container/register';
 import Component from './components/root';
@@ -10,6 +10,7 @@ import React from 'react';
 import {useAthContext} from "./store";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import FooterContainer from './container/footer';
+import { toast } from 'react-toastify';
 
 
 function App() {
@@ -38,18 +39,14 @@ function App() {
               }></Route>
 
               <Route exact path='payment/success' element={
-                <RouteProtect>
                   <PaymentSuccess></PaymentSuccess>
-                </RouteProtect>
               }></Route>
 
               <Route path='/' element={<Home></Home>}></Route>
               {/* <Route element={<RouteProtect isLogin={isLogin}><Outlet></Outlet></RouteProtect>}>
               </Route> */}
               <Route exact path='/createProduct' element={
-                <RouteProtect>
                   <CreateProduct></CreateProduct>
-                </RouteProtect>
               }></Route>
               <Route exact path='/updateProduct/:id' element={<UpdateProduct></UpdateProduct>}></Route>
               <Route exact path='/product/:id' element={<Outlet></Outlet>}>
@@ -65,6 +62,10 @@ function App() {
               <Route path='/purchaseHistory' element={<PurchaseHistory></PurchaseHistory>}></Route>
               <Route path='/purchaseHistory/detail/:id' element={<PurchaseHistoryDetail></PurchaseHistoryDetail>}></Route>
               <Route path='/changePassword/:id' element={<ChangePassword></ChangePassword>}></Route>
+              <Route path='/registerStaff' element={<RegisterStaff></RegisterStaff>}></Route>
+              <Route path='/getPurchased' element={<GetPurchased></GetPurchased>}></Route>
+
+              <Route path='/productManagement' element={<ProductManagement></ProductManagement>}></Route>
             </Routes>
             
             
@@ -87,7 +88,7 @@ function RouteProtect({ children }) {
 }
 
 function RouteAuth({children, returnUrl}) {
-    const {isLogin} = useAthContext();
+    const {isLogin,role} = useAthContext();
 
   if(!isLogin) return (<>{children}</>);
 

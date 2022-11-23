@@ -8,7 +8,6 @@ import { deleteProduct, getProduct } from "../../api/product";
 import { Link } from "react-router-dom";
 
 export default function ProductContainer(){
-    const [cart,setCard] = React.useState();
     const [product,setProduct] = React.useState({
         getProduct:[]
     })
@@ -38,36 +37,11 @@ export default function ProductContainer(){
                                     </Component>
                                     </Link>
                                     <Text.Subtitle className="product__name">{e.name}</Text.Subtitle>
-                                    <Text className="product__price">{e.author}</Text>
-                                    <Component className="product__buttonManage">
-                                        <Link to={`/updateProduct/${e.id}`}>
-                                        <Button.Update
-                                        >Update</Button.Update>
-                                        </Link>
-                                        <Button.Delete
-                                        onClick={() => {
-                                            deleteProduct(e.id);
-                                            setProduct(oldState => {
-                                                return{
-                                                    ...oldState,
-                                                    getProduct: oldState.getProduct.filter(i => i.id !== e.id)
-                                                }
-                                            })
-                                        }}
-                                        
-                                        >Delete</Button.Delete>
-                                    </Component>
+                                    <Text className="product__author">{e.author}</Text>
                                 </Form.Item>
                                 
                         )
                     })}
-                    <Component className="product">
-                        <Form.Item className="product__form">
-                            <Text.Link href="/createProduct">
-                                <GrAdd className="product__add"></GrAdd>
-                            </Text.Link>
-                        </Form.Item>
-                    </Component>
                 </Component>
                 <Component className="product__formButton">
                     <Button className="product__button">View All</Button>

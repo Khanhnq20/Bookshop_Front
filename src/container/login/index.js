@@ -4,11 +4,9 @@ import FormComponent from "../../components/form";
 import Text from "../../components/text";
 import Button from "../../components/button";
 import Logo from "../../components/logo";
-import {login} from '../../api/config';
 import { Formik } from "formik";
-import { useNavigate } from "react-router-dom";
+
 import {useAthContext} from "../../store/authorContext";
-import { toast } from "react-toastify";
 
 
 
@@ -18,7 +16,7 @@ export default function LoginContainer() {
         password: ''
     });
     const contextHandler = useAthContext();
-    const navigate = useNavigate();
+
     const changeHandler = (e) =>{
         setState({
             ...state,
@@ -28,13 +26,7 @@ export default function LoginContainer() {
 
     const submitHandler = (e) =>{
         e.preventDefault();
-        login(state.username, state.password).then(res => {
-            let data = res.data;
-            localStorage.setItem("access",data?.token)
-            navigate('/');
-            toast.success(`Hello, ${contextHandler?.role}`)
-            contextHandler.setLogin(true);
-        });
+        contextHandler.login(state.username, state.password);
     }
 
     return(<Formik>

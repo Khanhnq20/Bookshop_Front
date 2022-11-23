@@ -26,9 +26,9 @@ export default function FilterProductContainer(){
         }
     }, [location])
     return(
-        <Component style={{paddingTop:"70px"}}>
+        <Component style={{paddingTop:"10px",minHeight:"100vh"}}>
             <Component>
-                <Text.Title>Filter Product</Text.Title>
+                <Text.Title style={{fontSize:'25px'}}>List of Product</Text.Title>
             </Component>
             <Component.Flex className="filterProduct__content">
                 <Component>
@@ -37,7 +37,7 @@ export default function FilterProductContainer(){
                     }}></PriceRange> */}
                 </Component>
                 <Component className="filterProduct__listProduct">
-                    {product.getProduct.map(e => {
+                    {product?.getProduct.map(e => {
                         return (<Form.Item className="product__form">
                             <Link to={{
                                 pathname: `/product/${e.product.id}`
@@ -47,7 +47,7 @@ export default function FilterProductContainer(){
                                 </Component>
                             </Link>
                             <Text.Subtitle className="product__name">{e.product.name}</Text.Subtitle>
-                            <Text className="product__price">{e.product.author}</Text>
+                            <Text className="product__author">{e.product.author}</Text>
                         </Form.Item>
                         )
                     })}

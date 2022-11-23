@@ -2,12 +2,11 @@ import React from "react";
 import Component from "../../components/root";
 import FormComponent from "../../components/form";
 import Text from "../../components/text";
-import Button from "../../components/button";
-import { register } from "../../api/config";
 import { useNavigate } from "react-router-dom";
 import { Formik } from 'formik';
 import * as yup from 'yup';
 import Form from 'react-bootstrap/Form';
+import { registerStaff } from "../../api/admin";
 
 
 let productSchema = yup.object().shape({
@@ -22,9 +21,9 @@ let productSchema = yup.object().shape({
     gender: yup.string().required("Gender is a required field"),
 })
 
-export default function RegisterContainer() {
-    const [error,setError] = React.useState();
+export default function RegisterStaffContainer() {
     const navigate = useNavigate();
+    const [error,setError] = React.useState();
     return(<Formik
     initialValues={{
         email: '',
@@ -39,13 +38,12 @@ export default function RegisterContainer() {
     onSubmit={(values,formikHelper) => {
         formikHelper.setSubmitting(false);
         try{
-            register(values.email,values.password,values.name,values.dayOfBirth,values.phoneNumber,values.gender).then(res => {
-                    navigate("/auth/login")
+            registerStaff(values.email,values.password,values.name,values.dayOfBirth,values.phoneNumber,values.gender).then(res => {
+                    navigate("/staffManagement")
                 });
         }catch(e){
             setError("Maybe your email already exists")
         }
-    
     }}
     >
         {({values,touched,errors,handleSubmit,handleChange, handleBlur}) => {
@@ -55,7 +53,7 @@ export default function RegisterContainer() {
                 <FormComponent className="login__form" onSubmit={handleSubmit}>
                     <Component.Flex className="login__flex">
                         <Text.Title>
-                            Welcome to Register
+                            Welcome to Register Staff
                         </Text.Title>
                         {error && <Text style={{color:"red",textAlign:"center"}}>{error}</Text>}
                         <Form.Group>
@@ -128,7 +126,6 @@ export default function RegisterContainer() {
                             <Form.Control.Feedback type="invalid">{errors.password}</Form.Control.Feedback>
                         </Form.Group>
                         <FormComponent.Input type="submit" value={"Register"} style={{ width: "220px" }}></FormComponent.Input>
-                        <Button href="/auth/login">Back to Login</Button>
                     </Component.Flex>
                 </FormComponent>
                 <FormComponent.Image style={{ height: '99.8vh', width: '100%' }}></FormComponent.Image>

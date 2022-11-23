@@ -9,6 +9,7 @@ import { Formik, FieldArray } from 'formik';
 import { createProduct } from "../../api/product";
 import { getGenre } from "../../api/config";
 import * as yup from 'yup';
+import { useNavigate } from "react-router-dom";
 
 let productSchema = yup.object().shape({
     name: yup.string().required("Product name is a required field"),
@@ -17,14 +18,14 @@ let productSchema = yup.object().shape({
     publishDay: yup.date().typeError("Publish day should be entered as yyyy/mm/dd").required("Publish day is a required field"),
     pages: yup.number().required("Pages is a required field"),
     description: yup.string().required("Description is a required field"),
-    // price: yup.number().required("Price is a required field"),
-    // inventory: yup.number().required("Inventory is a required field")
+    genreIds: yup.array().min(1)
 })
 
 
 export default function CreateProductContainer(){
     const [toggle,setToggle] = React.useState(false);
     const [currentIndex , setCurrentIndex] = React.useState(0);
+        const navigate = useNavigate();
     const ToggleFormatHandler = () => {
         setToggle(e=>!e);
     }
@@ -70,7 +71,10 @@ export default function CreateProductContainer(){
             ...values,
             type: values.type.filter((_, indx) => indx !== currentIndex)
         }
-        createProduct(formSubmit);
+        createProduct(formSubmit).then(res=>{
+            navigate("/productManagement")
+        });
+
     }}
     >
         {({values,touched,errors,handleSubmit,handleChange, handleBlur,handleReset,setFieldValue}) =>{
@@ -78,12 +82,9 @@ export default function CreateProductContainer(){
                 <Component>
                     <Component>
                         <Text.Title>Create New Product</Text.Title>
-                        <Component>
-                            <FaTimes></FaTimes>
-                        </Component>
                     </Component>
                     <Form className="createProduct__entireForm" onSubmit={handleSubmit}>
-                        <Component>
+                        <Component style={{textAlign:"center"}}>
                             <Form.Group controlId="file">
                                 <Form.Control type="file"
                                 onChange={(e) =>{
@@ -98,7 +99,7 @@ export default function CreateProductContainer(){
                                     fileReader.readAsDataURL(file);
 
                                 }}></Form.Control>
-                                <Image src={imageURL} width="120px" height={"120px"}></Image>
+                                <Image style={{margin:"20px"}} src={imageURL || "https://cdn-icons-png.flaticon.com/512/2232/2232688.png"} width="auto" height={"200px"}></Image>
                             </Form.Group>
                         </Component>
                         <Component.Grid className="createProduct__grid">
@@ -269,11 +270,11 @@ export default function CreateProductContainer(){
                                             </Component.Flex>
 
                                             <Component>
-                                                <Component style={{ width: "fit-content", margin: "0 auto", padding: "5px" }}>
+                                                <Component style={{display:"flex",flexDirection:"column",gap:"10px", width: "fit-content", margin: "0 auto", padding: "5px" }}>
                                                     {
                                                         values.type.map((item, index) => {
 
-                                                            return index !== currentIndex && <>
+                                                            return index !== currentIndex && <Component style={{display:"flex",margin:"10px"}}>
                                                                 <Component.Flex className="createProduct__formatFlex">
                                                                     <Component.Span className="createProduct__formatItem">
                                                                         <Text.Label className="text__label textFormat">Type</Text.Label>
@@ -295,7 +296,7 @@ export default function CreateProductContainer(){
                                                                 }}>
                                                                     <FaTimesCircle></FaTimesCircle>
                                                                 </Component>
-                                                            </>
+                                                            </Component>
                                                         })
                                                     }
 
@@ -312,7 +313,6 @@ export default function CreateProductContainer(){
                         
                         <Component style={{display:"flex",justifyContent:"center",padding:"10px"}}>
                             <Button onClick={() => {
-                                console.log("sdsd")
                                 handleSubmit();
                             }}>Submit</Button>
                         </Component>

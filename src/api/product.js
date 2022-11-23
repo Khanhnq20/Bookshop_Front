@@ -72,3 +72,19 @@ export function filterProduct(genreId){
         }
     })
 }
+
+export function searchProduct(searchString){
+    return staffInstance.get("searchProduct",{
+        params:{
+            searchString
+        }
+    })
+}
+
+export function searchGenre(searchString){
+    return staffInstance.get("searchGenre",{
+        params:{
+            searchString
+        }
+    })
+}

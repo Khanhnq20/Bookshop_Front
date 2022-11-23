@@ -35,3 +35,11 @@ export function getComment(id){
         }
     })
 }
+
+export function getPurchased(id){
+    return userInstance.get("getPurchased",{
+        params:{
+            id
+        }
+    });
+}

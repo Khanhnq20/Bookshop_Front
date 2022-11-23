@@ -1,4 +1,5 @@
 import React from "react";
+import { toast } from "react-toastify";
 import Component from "../components/root";
 import Text from "../components/text";
 import BannerContainer from "../container/banner";
@@ -9,14 +10,10 @@ import CreateProductContainer from "../container/createProduct";
 import FooterContainer from "../container/footer";
 import NavigationContainer from "../container/navigation";
 import ProductContainer from "../container/product";
+import { useAthContext } from "../store";
 
 export default function Home(){
 
-    // if(state.loading) return (
-    //     <Component>
-    //         <h1 className="p-5">Loading...</h1>
-    //     </Component>
-    // )
     return(
         <Component>
             {/* <div className="p-5">

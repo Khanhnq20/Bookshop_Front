@@ -4,7 +4,7 @@ const host = "https://localhost:5001";
 const authInstance = axios.create({
     baseURL: `${host}/api/accounts`,
     withCredentials:'same-site',
-        headers: {
+    headers: {
         Authorization: `Bearer ${localStorage.getItem("access")}`
     }
 })
@@ -52,9 +52,7 @@ export function logout(){
 
 
 export function certificate(){
-    return authInstance.get("userPersistence",{
-        credentials: 'same-site',
-    });
+    return authInstance.get("userPersistence");
 }
 
 export function createGenre(genre){

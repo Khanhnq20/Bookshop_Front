@@ -9,12 +9,20 @@ const adminInstance = axios.create({
     }
 })
 
-export function getUser(){
-    return adminInstance.get("getUser");
+export function getUser(searchString){
+    return adminInstance.get("getUser",{
+        params:{
+            searchString
+        }
+    });
 }
 
-export function getStaff(){
-    return adminInstance.get("getStaff");
+export function getStaff(searchString){
+    return adminInstance.get("getStaff",{
+        params:{
+            searchString
+        }
+    });
 }
 
 export function getSingleUser(id){
@@ -49,3 +57,4 @@ export function changePassword(id,password){
         password
     }});
 }
+

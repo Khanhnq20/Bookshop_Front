@@ -13,3 +13,6 @@ export {default as Personal} from './personal';
 export {default as PurchaseHistory} from './purchaseHistory';
 export {default as PurchaseHistoryDetail} from './purchaseHistoryDetail';
 export {default as ChangePassword} from './changePassword';
+export {default as RegisterStaff} from './registerStaff';
+export {default as GetPurchased} from './getPurchased';
+export {default as ProductManagement} from './productManagement';
