@@ -6,7 +6,7 @@ const staffInstance = axios.create({
     baseURL: `${host}/api/staff`,
     withCredentials: 'same-site',
         headers: {
-        Authorization: `${localStorage.getItem("access")}`
+        Authorization: `Bearer ${localStorage.getItem("access")}`
     }
 })
 

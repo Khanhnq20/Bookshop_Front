@@ -10,6 +10,7 @@ import { createProduct } from "../../api/product";
 import { getGenre } from "../../api/config";
 import * as yup from 'yup';
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 let productSchema = yup.object().shape({
     name: yup.string().required("Product name is a required field"),
@@ -72,7 +73,8 @@ export default function CreateProductContainer(){
             type: values.type.filter((_, indx) => indx !== currentIndex)
         }
         createProduct(formSubmit).then(res=>{
-            navigate("/productManagement")
+            navigate("/productManagement");
+            toast.success("Created");
         });
 
     }}

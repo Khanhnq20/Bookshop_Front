@@ -36,7 +36,7 @@ export function registerStaff(email, password,name,dayOfBirth,phoneNumber,gender
         baseURL: host,
         withCredentials: 'same-site',
             headers: {
-        Authorization: `${localStorage.getItem("access")}`
+        Authorization: `Bearer ${localStorage.getItem("access")}`
     }
     });
 } 

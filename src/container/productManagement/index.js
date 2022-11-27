@@ -6,6 +6,7 @@ import { deleteProduct, getProduct, searchProduct } from "../../api/product";
 import Button from 'react-bootstrap/Button';
 import { Link } from "react-router-dom";
 import FormComponent from "../../components/form";
+import { toast } from "react-toastify";
 
 export default function ProductManagementContainer(){
     const [product,setProduct] = React.useState({
@@ -68,7 +69,7 @@ export default function ProductManagementContainer(){
                                         <Button
                                         variant="danger"
                                         onClick={() => {
-                                            deleteProduct(e.id);
+                                            deleteProduct(e.id).then(res=>{toast.success("Deleted!")});
                                             setProduct(oldState => {
                                                 return{
                                                     ...oldState,

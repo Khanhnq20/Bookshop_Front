@@ -11,6 +11,7 @@ import { getGenre } from "../../api/config";
 import * as yup from 'yup';
 import { useNavigate, useParams } from "react-router-dom";
 import axios from 'axios';
+import { toast } from "react-toastify";
 
 let productSchema = yup.object().shape({
     name: yup.string().required("Product name is a required field"),
@@ -152,7 +153,9 @@ export default function UpdateProductContainer() {
             onSubmit={(values, formikHelper) => {
                 formikHelper.setSubmitting(false);
                 if(values.fileImage){
-                    updateProductImage(values.fileImage, productSingle.id);
+                    updateProductImage(values.fileImage, productSingle.id).then(res=>{
+                        toast.success("Changed!");
+                    });
                 }
             }}
             >
@@ -200,6 +203,7 @@ export default function UpdateProductContainer() {
                         type: values.type.filter((_, indx) => indx !== currentIndex)
                     }
                     updateProduct(formSubmit,productSingle.id).then(r => {
+                        toast.success("Updated!")
                         navigation({pathname:"/"})
                     });
 
