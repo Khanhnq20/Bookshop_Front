@@ -7,7 +7,8 @@ import {Spinner} from 'react-bootstrap';
 import FormComponent from '../../components/form/index';
 import { useParams } from "react-router-dom";
 import { getSinglePurchaseHistory, getSingleUser } from "../../api/admin";
-import { toast } from "react-toastify";
+import {MdVerified} from 'react-icons/md';
+import {GoUnverified} from 'react-icons/go'
 
 
 export default function PurchaseHistoryDetailContainer(){
@@ -57,6 +58,12 @@ export default function PurchaseHistoryDetailContainer(){
                                     {history?.confirmStatus ? <Text.Info style={{color:"green"}}>Successfully</Text.Info> 
                                         : 
                                     <Text.Info style={{color:"red"}}>Failed</Text.Info>}
+                                </Component>
+                                <Component className="pSuccess__content">
+                                    <Text>Verify</Text>
+                                    {history?.verify ? <MdVerified style={{color:'green',fontSize:"25px"}}></MdVerified> 
+                                        : 
+                                    <GoUnverified style={{color:'red',fontSize:"25px"}}></GoUnverified>}
                                 </Component>
                             </Component.Grid>
                         </Component>

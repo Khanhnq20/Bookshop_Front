@@ -4,9 +4,11 @@ import Component from '../../components/root'
 import * as yup from 'yup';
 import Form from 'react-bootstrap/Form';
 import { changePassword } from '../../api/admin';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import Text from '../../components/text';
+import { toast } from 'react-toastify';
+import FormComponent from '../../components/form';
 
 let passwordSchema = yup.object().shape({
     password: yup.string().required("This field is requied").matches(
@@ -19,6 +21,7 @@ let passwordSchema = yup.object().shape({
 export default function ChangePassContainer() {
     const [error,setError] = React.useState();
     const param = useParams();
+    const navigater = useNavigate()
     return (<Formik
     initialValues={{
         password:'',
@@ -29,14 +32,18 @@ export default function ChangePassContainer() {
         onSubmit={(values,formikHelper) => {
             formikHelper.setSubmitting(false);
             changePassword(param['id'],values.password).then(() =>{
-                
+                toast.success("Changed!");
+                navigater("/");
             })
         }}
     >
     {({touched, errors, handleSubmit, handleChange, handleBlur}) => {
         return(
-            <Component style={{minHeight:"100vh"}}>
+            <Component style={{minHeight:"100vh",padding:"15px"}}>
                 <Form onSubmit={handleSubmit} style={{maxWidth:"350px",margin:"0 auto",transform:"translateY(30%)",display:"flex",flexDirection:"column",gap:"15px"}}>
+                    <Component style={{textAlign:"center"}}>
+                        <FormComponent.Image width="130px" src="https://cdn.dribbble.com/users/66224/screenshots/1609819/lock.jpg"/>
+                    </Component>
                     <Text.Title style={{fontSize:"20px"}}>Change The Password</Text.Title>
                 {error && <Text style={{color:'red',textAlign:"center"}}>{error}</Text>}
                     <Form.Group>

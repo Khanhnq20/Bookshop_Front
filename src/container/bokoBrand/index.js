@@ -10,7 +10,7 @@ export default function BokoBrand(){
         <Component className="bokoBrand">
             <Component.Flex className="bokoBrand__flex">
                 <Component className="bokoBrand__item">
-                    <Form.Image className="bokoBrand__image" src="https://tinyurl.com/4xfk3p5m">
+                    <Form.Image className="bokoBrand__image" src="https://www.pem.cam.ac.uk/sites/default/files/styles/meta_tag/public/hero/e81a7985_2.jpg?h=56d0ca2e&itok=I-jh0OFv">
                     </Form.Image>
                 </Component>
                 <Component style={{ background:"#FFF0D9"}} className="bokoBrand__item">

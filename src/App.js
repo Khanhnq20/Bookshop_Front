@@ -5,12 +5,10 @@ import { BrowserRouter, Outlet, Route, Routes, Navigate } from 'react-router-dom
 import { ChangePassword, CreateProduct, FilterProduct, Genres, GetPurchased, Home, Login, Payment, PaymentSuccess, Personal, ProductDetail, ProductManagement, PurchaseHistory, PurchaseHistoryDetail, RegisterStaff, StaffManagement, UpdateProduct, UserManagement } from './pages';
 import NavigationContainer from './container/navigation';
 import RegisterContainer from './container/register';
-import Component from './components/root';
 import React from 'react';
 import {useAthContext} from "./store";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import FooterContainer from './container/footer';
-import { toast } from 'react-toastify';
 
 
 function App() {
@@ -20,7 +18,6 @@ function App() {
         <BrowserRouter>
             <Routes>
               <Route index path="/*" element={<NavigationContainer></NavigationContainer>}></Route>
-              <Route path="admin" element={<h1>Dashboard</h1>}></Route>
             </Routes>
 
             <Routes>
@@ -33,9 +30,7 @@ function App() {
               </Route>
               
               <Route exact path='payment' element={
-                <RouteProtect>
                   <Payment></Payment>
-                </RouteProtect>
               }></Route>
 
               <Route exact path='payment/success' element={
@@ -43,8 +38,6 @@ function App() {
               }></Route>
 
               <Route path='/' element={<Home></Home>}></Route>
-              {/* <Route element={<RouteProtect isLogin={isLogin}><Outlet></Outlet></RouteProtect>}>
-              </Route> */}
               <Route exact path='/createProduct' element={
                   <CreateProduct></CreateProduct>
               }></Route>
@@ -76,15 +69,6 @@ function App() {
       </div>
     </>
   );
-}
-function RouteProtect({ children }) {
-  const {isLogin} = useAthContext();
-  if (!isLogin) return <Navigate to="/auth/login"></Navigate>
-  return (
-    <Component>
-      {children}
-    </Component>
-  )
 }
 
 function RouteAuth({children, returnUrl}) {

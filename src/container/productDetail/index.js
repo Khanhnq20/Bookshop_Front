@@ -85,6 +85,7 @@ export default function ProductDetailContainer() {
     const handleSubmit=(book)=>{
         if(isLogin){
             functions.addToCart(book);
+            toast.success("Added!");
         }
         else {
             toast.warn("Please login first");
@@ -102,98 +103,100 @@ export default function ProductDetailContainer() {
 
     return(
         <Component.Wrapper className="productDetail">
-            <Component className="productDetail__flex">
-                <Component className="productDetail__item1">
-                    <FormComponent.Image className="productDetail__image" src={product?.fileImage || "https://tinyurl.com/2mcfxrmt"}></FormComponent.Image>
-                </Component>
-                <Component className="productDetail__item2">
-                    <Component>
-                        <Text.Title className="productDetail__title">{product?.name}</Text.Title>
-                        <Component className="productDetail__label">
-                            <Text.Label>Author</Text.Label>
-                            <Text.Info href="">{product?.author}</Text.Info>
-                        </Component>
-                        <Component className="productDetail__label">
-                            <Text.Label>Genres</Text.Label>
-                            <Text style={{marginLeft:"5px"}}>
-                                <Text.Info style={{display:"flex"}} href="">{product?.productGenres?.map(currentGenres => {
-                                    return genres.find(g => {
-                                        return currentGenres.genreId === g.id
-                                    })?.name}).join(",  ")}
-                                </Text.Info>
-                            </Text>
-                        </Component>
-                        <Text className="productDetail__format" style={{ marginBottom: "10px" }}>Format</Text>
+            <Component style={{margin:"0 auto"}}>
+                <Component className="productDetail__flex">
+                    <Component className="productDetail__item1">
+                        <FormComponent.Image className="productDetail__image" src={product?.fileImage || "https://tinyurl.com/2mcfxrmt"}></FormComponent.Image>
+                    </Component>
+                    <Component className="productDetail__item2">
                         <Component>
-                            <Form style={{ display: "flex" }}>
-                                {product?.type?.map((item,index) => {
-                                    return(
-                                        <ListGroup key={index} className="mb-4">
-                                            <Form.Group as={ListGroup.Item} style={{ marginRight: "5px" }} className="productDetail__formSelect">
-                                                <Form.Check
-                                                    inline
-                                                    label={item.name}
-                                                    name="group1"
-                                                    type="radio"
-                                                    onChange={(e) => {
-                                                        setInventory(item.inventory);
-                                                        setProductCart(o =>({...o,type:item?.name,price:item.price}))
-                                                    }}
-                                                    id={`inline-radio-${++index}`}
-                                                />
-                                                <Text.Price style={{ textAlign: "center" }}>{item.price?.toLocaleString("en-US")} VND</Text.Price>
-                                            </Form.Group>
-                                        </ListGroup>
-                                    )
-                                })}
-                            </Form>
-                            {error && <p style={{color:"red",paddingLeft:"5px"}}>{error}</p>}
-                        </Component>
-                    </Component>
-                    <Component className="productDetail__quantityAdd">
-                        <Component.Span className="productDetail__quantityForm">
-                                <BiMinus style={{cursor:'pointer',marginLeft:'5px'}}
-                                    onClick={handleMinus}
-                                ></BiMinus>
-                                <FormComponent.Input className="productDetail__quantity"
-                                    style={{paddingLeft:'5px'}}
-                                    type='number'
-                                    value={quantity}
-                                    max={99}
-                                    onChange={(i) =>{setQuantity(Number(i.target.value) > 99 ? 99 : i.target.value)}}
-                                ></FormComponent.Input>
-                                <BiPlus style={{cursor:'pointer'}}
-                                    onClick={handlePlus}
-                                ></BiPlus>
-                        </Component.Span>
-                        <Component.Span>
-                            <Button style={{padding:"10px 15px 10px 15px"}}
-                                variant="danger"
-                                onClick={()=>{
-                                    validateInventory(error =>{
-                                        console.log(error);
-                                        if(!error){
-                                            handleSubmit(productCart);
-                                            setError("")
-                                        }
-                                    });
-                                }}
-                            >Add to Cart</Button>
-                        </Component.Span>
-                    </Component>
-                    <Component>
-                        <Component className="productDetail__label">
-                            <Component className="productDetail__topic">
-                                <Text.Label>Inventory</Text.Label>
-                                <Text.Label>Publish Day</Text.Label>
-                                <Text.Label>Pages</Text.Label>
-                                <Text.Label>Language</Text.Label>
+                            <Text.Title className="productDetail__title">{product?.name}</Text.Title>
+                            <Component className="productDetail__label">
+                                <Text.Label>Author</Text.Label>
+                                <Text.Info href="">{product?.author}</Text.Info>
                             </Component>
-                            <Component className="productDetail__info">
-                                <Text.Info>{inventory || "Stocking"}</Text.Info>
-                                <Text.Info>{product?.publishDay}</Text.Info>
-                                <Text.Info>{product?.pages}</Text.Info>
-                                <Text.Info>{product?.language}</Text.Info>
+                            <Component className="productDetail__label">
+                                <Text.Label>Genres</Text.Label>
+                                <Text style={{marginLeft:"5px"}}>
+                                    <Text.Info style={{display:"flex"}} href="">{product?.productGenres?.map(currentGenres => {
+                                        return genres.find(g => {
+                                            return currentGenres.genreId === g.id
+                                        })?.name}).join(",  ")}
+                                    </Text.Info>
+                                </Text>
+                            </Component>
+                            <Text className="productDetail__format" style={{ marginBottom: "10px" }}>Format</Text>
+                            <Component>
+                                <Form style={{ display: "flex" }}>
+                                    {product?.type?.map((item,index) => {
+                                        return(
+                                            <ListGroup key={index} className="mb-4">
+                                                <Form.Group as={ListGroup.Item} style={{ marginRight: "5px" }} className="productDetail__formSelect">
+                                                    <Form.Check
+                                                        inline
+                                                        label={item.name}
+                                                        name="group1"
+                                                        type="radio"
+                                                        onChange={(e) => {
+                                                            setInventory(item.inventory);
+                                                            setProductCart(o =>({...o,type:item?.name,price:item.price}))
+                                                        }}
+                                                        id={`inline-radio-${++index}`}
+                                                    />
+                                                    <Text.Price style={{ textAlign: "center" }}>{item.price?.toLocaleString("en-US")} VND</Text.Price>
+                                                </Form.Group>
+                                            </ListGroup>
+                                        )
+                                    })}
+                                </Form>
+                                {error && <p style={{color:"red",paddingLeft:"5px"}}>{error}</p>}
+                            </Component>
+                        </Component>
+                        <Component className="productDetail__quantityAdd">
+                            <Component.Span className="productDetail__quantityForm">
+                                    <BiMinus style={{cursor:'pointer',marginLeft:'5px'}}
+                                        onClick={handleMinus}
+                                    ></BiMinus>
+                                    <FormComponent.Input className="productDetail__quantity"
+                                        style={{paddingLeft:'5px'}}
+                                        type='number'
+                                        value={quantity}
+                                        max={99}
+                                        onChange={(i) =>{setQuantity(Number(i.target.value) > 99 ? 99 : i.target.value)}}
+                                    ></FormComponent.Input>
+                                    <BiPlus style={{cursor:'pointer'}}
+                                        onClick={handlePlus}
+                                    ></BiPlus>
+                            </Component.Span>
+                            <Component.Span>
+                                <Button style={{padding:"10px 15px 10px 15px",whiteSpace:"no-wrap"}}
+                                    variant="danger"
+                                    onClick={()=>{
+                                        validateInventory(error =>{
+                                            console.log(error);
+                                            if(!error){
+                                                handleSubmit(productCart);
+                                                setError("")
+                                            }
+                                        });
+                                    }}
+                                >Add to Cart</Button>
+                            </Component.Span>
+                        </Component>
+                        <Component>
+                            <Component className="productDetail__label">
+                                <Component className="productDetail__topic">
+                                    <Text.Label>Inventory</Text.Label>
+                                    <Text.Label>Publish Day</Text.Label>
+                                    <Text.Label>Pages</Text.Label>
+                                    <Text.Label>Language</Text.Label>
+                                </Component>
+                                <Component className="productDetail__info">
+                                    <Text.Info>{inventory || "Stocking"}</Text.Info>
+                                    <Text.Info>{product?.publishDay}</Text.Info>
+                                    <Text.Info>{product?.pages}</Text.Info>
+                                    <Text.Info>{product?.language}</Text.Info>
+                                </Component>
                             </Component>
                         </Component>
                     </Component>
@@ -217,9 +220,9 @@ export default function ProductDetailContainer() {
                 </Component>
                 <Component className="productDetail__tab2">
                     <Text>
-                        MIỄN PHÍ chuyển hàng COD Toàn Quốc cho đơn hàng từ 200 USD
-                        Hỗ trợ đổi sản phẩm trong 14 ngày kể từ ngày nhận hàng với điều kiện hàng mới chưa qua sử dụng và còn nguyên tem mác.
-                        Bảo hành sản phẩm trong vòng 6 tháng đối với lỗi từ nhà sản xuất (lỗi keo, lỗi chỉ,..).
+                        FREE COD shipping nationwide for orders from 200 USD.
+                        Support to exchange products within 14 days from the date of receipt with the condition that the goods are new, unused and with tags intact.
+                        Product warranty within 6 months against manufacturer defects (glue error, thread error, ..).
                     </Text>
                 </Component>
             </Component>
@@ -307,8 +310,8 @@ function Comment() {
                 emailAth: user?.email
             }
             setEvaluate(o =>[...o, data]);
-            setRating(0)
-            
+            setRating(0);
+            toast.success("Successful evaluation!")
         })
     }
   }
@@ -358,8 +361,8 @@ function Comment() {
                 
             />
             <Component>
-                <Text style={{fontWeight:"600"}}>{user?.name}</Text>
-                <Text.Info style={{fontSize:"13px",marginTop:"5px"}}>{user?.email}</Text.Info>
+                <Text style={{fontWeight:"600"}}>{user?.name || "Guest"}</Text>
+                <Text.Info style={{fontSize:"13px",marginTop:"5px"}}>{user?.email || "Loading"}</Text.Info>
             </Component>
         </Component>
         <Component style={{display:"flex"}}>

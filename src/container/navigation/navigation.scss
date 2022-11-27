@@ -4,23 +4,23 @@
     position: sticky;
     top: 0;
     padding: 8px 5px;
+    max-height: 66px;
     width: 100%;
-    z-index: 100;
+    z-index: 1000;
     box-shadow: 0 3px 2px -2px lightgray;
+    position: relative;
     &__table {
         position: absolute;
         background-color: white;
         padding: 10px 10px 0 10px;
-        border-top: 1px solid black;
+        border-top: 1px solid lightgray;
         top:39px;
-        min-width: 450px;
-        transform: translate(-50%,4%);
+        max-width: 450px;
+        top:0;
+        transform: translate(-42%,65px);
         justify-content: stretch;
         align-items: stretch;
-        border: 1px solid black;
-    }
-    &__genres{
-        position: relative;
+        border: 1px solid lightgray;
     }
     &__genresItem{
         color: black;
@@ -49,8 +49,18 @@
         height: fit-content;
         width: 33.33%;
     }
+    &__flexItemTarget {
+        flex-grow: 1;
+        padding: 5px 0;
+        height: fit-content;
+        width: 33.33%;
+    }
+    &__leftBar{
+        display: none;
+    }
     &__first{
         display: flex;
+        align-items: center;
     }
     &__logo{
         padding: 0 10px;
@@ -129,5 +139,77 @@
         border-radius: 50%;
         overflow: hidden;
         transform: translate(-10px,-4px);
+    }
+    &__productForm{
+        position: absolute;
+        background-color: white;
+        padding:0px 25px;
+        transform: translateY(66px);
+        top:0;
+    }
+    &__searchRes{
+        width: fit-content;
+        display: none;
+        align-items: center;
+        color: black;
+    }
+    @media screen and (max-width:768px) {
+        &__flexItemTarget {
+            display: none;
+        }
+        &__leftBar {
+            display: inline-block;
+        }
+    }
+
+    @media screen and (min-width:768px) {}
+    @media screen and (max-width:440px) {
+        &__search {
+            display: none;
+        }
+        &__searchRes{
+            display: flex;
+        }
+    }
+}
+
+.leftBar{
+    &__item{
+        position: relative;
+    }
+    &__topic{
+        color: black;
+        margin: 0;
+        padding: 10px 0;
+        &:hover {
+                color: blue;
+            }
+    }
+    &__flex{
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        color: gray;
+        gap:90px;
+        user-select: none;
+        cursor: pointer;
+        &:hover {
+                color: blue;
+            }
+    }
+    &__table{
+        margin:10px;
+    }
+    &__productForm{
+        position: absolute;
+        background-color: white;
+        padding: 0px 25px;
+        transform: translateY(30px);
+        top: 0;
+    }
+}
+.search__single{
+    :hover{
+        background-color: lightgray;
     }
 }

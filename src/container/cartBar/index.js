@@ -40,8 +40,8 @@ export default function CartBar(prop){
                         <FormComponent.Image src={item.image} className= "cartBar__productImage"></FormComponent.Image>
                     </Component>
                     <Component className="cartBar__contentProduct">
-                        <Text>{item.name}</Text>
-                        <Text>{item.type} - Id: {item.id}</Text>
+                        <Text style={{fontWeight:"600",fontSize:"16px"}}>{item.name}</Text>
+                        <Text.Info>{item.type} - Id: {item.id}</Text.Info>
                         <Component className="cartBar__quantityForm">
                             <Component.Span className="productDetail__quantityForm">
                                     <BiMinus style={{cursor:'pointer',marginLeft:'5px'}}

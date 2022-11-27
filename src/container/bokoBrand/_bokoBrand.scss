@@ -3,11 +3,10 @@
     margin-top: 10px;
     &__flex{
         display: flex;
-        max-height: 400px;
     }
     &__item{
         flex-grow: 1;
-        width: 50%;
+        max-width: 850px;
         position: relative;
     }
     &__image{
@@ -17,7 +16,7 @@
     &__infoFlex{
         display: flex;
         gap: 35px;
-        margin: 5px 0;
+        margin: 15px 0;
         padding: 10px 0;
         overflow: hidden;
     }
@@ -37,5 +36,18 @@
     &__title{
         margin: 30px;
         font-size: 30px;
+    }
+    @media screen and (max-width:440px) {
+        &__ship {
+            display: none;
+        }
+        &__title{
+            display: none;
+        }
+    }
+    @media screen and (max-width:838px) {
+        &__flex{
+            flex-wrap: wrap;
+        }
     }
 }

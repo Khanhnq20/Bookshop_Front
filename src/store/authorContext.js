@@ -1,4 +1,5 @@
 import React, {createContext,useContext,useEffect } from "react";
+import { toast } from "react-toastify";
 import {certificate, logout as apiLogout, login as apiLogin} from '../api/config';
 
 const AuthorContext = createContext();
@@ -11,7 +12,6 @@ export function Author({children}){
     });
     useEffect(() => {
         window.addEventListener("storage", () =>{
-            console.log("dispatch events")
             certificate().then(response =>{
                 const {isLogged, userId,identity} = response.data;
                 setState({
@@ -22,23 +22,12 @@ export function Author({children}){
             });
         });
 
-        console.log("out")
-
         window.dispatchEvent(new Event("storage"));
 
         return () =>{
             window.removeEventListener("storage", () =>{});
         }
     }, []);
-
-
-    // useEffect(() => {
-    //     if(!state.isLogin){
-    //         localStorage.removeItem("cart");
-    //         localStorage.removeItem("access");
-    //         return;
-    //     }
-    // }, [state.isLogin])
 
     function logout(onSuccess, onError) {
         apiLogout().then(()=>{
@@ -71,6 +60,7 @@ export function Author({children}){
                 return asyncLocalStorage.getItem("access");
             }).then(value =>{
                 window.dispatchEvent(new Event("storage"));
+                toast.success("Welcome to Boko!")
             });
 
             setLogin(true);

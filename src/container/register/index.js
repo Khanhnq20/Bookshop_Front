@@ -2,12 +2,14 @@ import React from "react";
 import Component from "../../components/root";
 import FormComponent from "../../components/form";
 import Text from "../../components/text";
-import Button from "../../components/button";
 import { register } from "../../api/config";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Formik } from 'formik';
 import * as yup from 'yup';
+import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import { toast } from "react-toastify";
+import Logo from "../../components/logo";
 
 
 let productSchema = yup.object().shape({
@@ -40,6 +42,7 @@ export default function RegisterContainer() {
         formikHelper.setSubmitting(false);
         try{
             register(values.email,values.password,values.name,values.dayOfBirth,values.phoneNumber,values.gender).then(res => {
+                    toast.success("Registed!")
                     navigate("/auth/login")
                 });
         }catch(e){
@@ -54,7 +57,8 @@ export default function RegisterContainer() {
             <Component>
                 <FormComponent className="login__form" onSubmit={handleSubmit}>
                     <Component.Flex className="login__flex">
-                        <Text.Title>
+                        <Logo></Logo>
+                        <Text.Title style={{fontSize:"20px"}}>
                             Welcome to Register
                         </Text.Title>
                         {error && <Text style={{color:"red",textAlign:"center"}}>{error}</Text>}
@@ -65,7 +69,7 @@ export default function RegisterContainer() {
                                     onChange={handleChange}
                                     onBlur={handleBlur}
                                     name="email"
-                                    placeholder="Enter your email..." />
+                                    placeholder="Enter your email" />
                             <Form.Control.Feedback type="invalid">{errors.email}</Form.Control.Feedback>
                         </Form.Group>
                         <Form.Group>
@@ -75,7 +79,7 @@ export default function RegisterContainer() {
                                     onChange={handleChange}
                                     onBlur={handleBlur}
                                     name="name"
-                                    placeholder="Enter your user name..." />
+                                    placeholder="Enter your user name" />
                             <Form.Control.Feedback type="invalid">{errors.name}</Form.Control.Feedback>
                         </Form.Group>
                         <Form.Group>
@@ -95,7 +99,7 @@ export default function RegisterContainer() {
                                     onChange={handleChange}
                                     onBlur={handleBlur}
                                     name="phoneNumber"
-                                    placeholder="Enter your phone number..." />
+                                    placeholder="Enter your phone number" />
                             <Form.Control.Feedback type="invalid">{errors.phoneNumber}</Form.Control.Feedback>
                         </Form.Group>
                         <Form.Group style={{ marginRight: "5px" }}>
@@ -124,11 +128,14 @@ export default function RegisterContainer() {
                                     isInvalid={touched.password && errors.password}
                                     onChange={handleChange}
                                     onBlur={handleBlur}
+                                    placeholder="Enter your Password"
                                     name="password"/>
                             <Form.Control.Feedback type="invalid">{errors.password}</Form.Control.Feedback>
                         </Form.Group>
-                        <FormComponent.Input type="submit" value={"Register"} style={{ width: "220px" }}></FormComponent.Input>
-                        <Button href="/auth/login">Back to Login</Button>
+                        <Button variant="success" onClick={handleSubmit}>Register</Button>
+                        <Link to="/auth/login">
+                            <Button variant="primary">Back To Login</Button>
+                        </Link>
                     </Component.Flex>
                 </FormComponent>
                 <FormComponent.Image style={{ height: '99.8vh', width: '100%' }}></FormComponent.Image>

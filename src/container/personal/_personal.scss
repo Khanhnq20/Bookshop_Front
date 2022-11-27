@@ -7,7 +7,7 @@
     background-color: #edf0f0;
     &__form{
         max-width: 450px;
-        min-width: 300px;
+        min-width: 250px;
         border: 1px solid #cbcaca;
         border-radius: 10px;
         padding:20px;
@@ -28,5 +28,28 @@
         display: flex;
         flex-direction: column;
         gap: 10px;
+    }
+}
+
+.update{
+    &__person{
+        position: fixed;
+        left:0;
+        top:0;
+        width: 100vw;
+        background-color: rgba(0,0,0,.7);
+        height: 100%;
+        z-index: 200;
+        padding:15px;
+    }
+    &__form{
+        max-width: 450px;
+        min-width: 250px;
+        border: 1px solid #cbcaca;
+        border-radius: 10px;
+        padding: 20px;
+        background-color: white;
+        transform: translateY(60%);
+        position: relative;
     }
 }

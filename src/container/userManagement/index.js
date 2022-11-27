@@ -25,7 +25,7 @@ const UserManagementContainer = () => {
         setText(e.target.value);
     }
     return (
-        <Component className="user">
+        <Component className="user" style={{padding:"0 15px 0 15px"}}>
                 <Form className="genre__createForm"  style={{maxWidth:"800px",margin:"0 auto"}}>
                     <Form.Group className="" >
                         <Form.Control
@@ -39,11 +39,11 @@ const UserManagementContainer = () => {
                         <Button variant="primary">Search</Button>
                     </Component>
                 </Form>
-            <Table striped bordered hover style={{maxWidth:"800px",margin:"0 auto"}}>
+            <Table responsive striped bordered hover style={{maxWidth:"800px",margin:"0 auto"}}>
                 <thead>
                     <tr>
                     <th>#</th>
-                    <th>User Name</th>
+                    <th style={{whiteSpace:"nowrap"}}>User Name</th>
                     <th>Email</th>
                     <th>Action</th>
                     </tr>
@@ -55,7 +55,7 @@ const UserManagementContainer = () => {
                             <td key={index}>{index+1}</td>
                             <td>{item.name}</td>
                             <td>{item.email}</td>
-                            <td>
+                            <td style={{whiteSpace:"nowrap"}}>
                                     <Link to={`/personal/${item.id}`}>
                                         <Button variant="primary">Detail</Button>
                                     </Link>

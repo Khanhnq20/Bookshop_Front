@@ -41,8 +41,10 @@ export function registerStaff(email, password,name,dayOfBirth,phoneNumber,gender
     });
 } 
 
-export function getPurchaseHistory(){
-    return adminInstance.get("getPurchaseHistory");
+export function getPurchaseHistory(searchString){
+    return adminInstance.get("getPurchaseHistory",{
+        params:{searchString}
+    });
 }
 
 export function getSinglePurchaseHistory(id){
@@ -55,6 +57,18 @@ export function changePassword(id,password){
     return adminInstance.post("changePassword",{},{params:{
         id,
         password
+    }});
+}
+
+export function userUpdate(name,phoneNumber,id){
+    return adminInstance.post("userUpdate",{name:name,phoneNumber:phoneNumber},{params:{
+        id
+    }});
+}
+
+export function verify(id){
+    return adminInstance.get("payment/verify",{params:{
+        id:id
     }});
 }
 

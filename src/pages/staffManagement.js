@@ -4,7 +4,7 @@ import StaffManagementContainer from "../container/staffManagement";
 
 export default function StaffManagement(){
     return (
-        <Component>
+        <Component style={{padding:"0 20px 0 20px"}}>
             <StaffManagementContainer></StaffManagementContainer>
         </Component>
     )

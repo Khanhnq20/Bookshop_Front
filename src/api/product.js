@@ -81,6 +81,14 @@ export function searchProduct(searchString){
     })
 }
 
+export function searchProductMain(searchString){
+    return staffInstance.get("searchProductMain",{
+        params:{
+            searchString
+        }
+    })
+}
+
 export function searchGenre(searchString){
     return staffInstance.get("searchGenre",{
         params:{

@@ -20,7 +20,6 @@ export default function CreateGenreContainer(){
     React.useEffect(() => {
         searchGenre(text).then(res => {
             const data = res.data;
-            console.log(data);
             setGenre({
                 getGenre:[...data]
             })
@@ -29,11 +28,10 @@ export default function CreateGenreContainer(){
 
     const handleChange = (e) =>{
         setText(e.target.value);
-        console.log(text)
     }
     const [toggle, setToggle] = React.useState(false);
     return(
-        <Component className="genre">
+        <Component className="genre" style={{padding:"20px"}}>
             <Component style={{margin:"0 auto",maxWidth:"800px"}}>
                 <Form className="genre__createForm"  style={{marginBottom:"20px"}}>
                     <Form.Group className="" >
@@ -53,11 +51,11 @@ export default function CreateGenreContainer(){
                     {toggle && <Component><FormCreateGenres></FormCreateGenres></Component>}
                 </Component>
                 <Component className="genre__tableForm">
-                    <Table striped bordered hover size="sm">
+                    <Table responsive striped bordered hover size="sm">
                         <thead>
                             <tr>
                                 <th>#</th>
-                                <th> Genres Name</th>
+                                <th style={{whiteSpace:"nowrap"}}> Genres Name</th>
                                 <th>Action</th>
                             </tr>
                         </thead>

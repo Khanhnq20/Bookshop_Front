@@ -7,6 +7,7 @@ import { Formik } from 'formik';
 import * as yup from 'yup';
 import Form from 'react-bootstrap/Form';
 import { registerStaff } from "../../api/admin";
+import { toast } from "react-toastify";
 
 
 let productSchema = yup.object().shape({
@@ -39,6 +40,7 @@ export default function RegisterStaffContainer() {
         formikHelper.setSubmitting(false);
         try{
             registerStaff(values.email,values.password,values.name,values.dayOfBirth,values.phoneNumber,values.gender).then(res => {
+                    toast.success("Registed!")
                     navigate("/staffManagement")
                 });
         }catch(e){

@@ -25,6 +25,7 @@ export default function ProductContainer(){
     return(
         <Component>
             <Component className="product">
+                <Text.Title style={{textAlign:"start",marginLeft:"10px"}}>Books Best Seller</Text.Title>
                 <Component className="product__list">
                     {product.getProduct.map(e =>{
                         
@@ -42,9 +43,6 @@ export default function ProductContainer(){
                                 
                         )
                     })}
-                </Component>
-                <Component className="product__formButton">
-                    <Button className="product__button">View All</Button>
                 </Component>
             </Component>
         </Component>

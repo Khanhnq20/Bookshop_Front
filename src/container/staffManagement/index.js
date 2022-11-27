@@ -45,11 +45,11 @@ const StaffManagementContainer = () => {
                         <Button variant="primary">Create New Staff</Button>
                     </Link>
                 </Component>
-                <Table striped bordered hover>
+                <Table responsive striped bordered hover>
                     <thead>
                         <tr>
                         <th>#</th>
-                        <th>Staff Name</th>
+                        <th style={{whiteSpace:"nowrap"}}>Staff Name</th>
                         <th>Email</th>
                         <th>Action</th>
                         </tr>
@@ -61,7 +61,7 @@ const StaffManagementContainer = () => {
                                 <td key={index}>{index+1}</td>
                                 <td>{item.name}</td>
                                 <td>{item.email}</td>
-                                <td>
+                                <td style={{whiteSpace:"nowrap"}}>
                                     <Link to={`/personal/${item.id}`}>
                                         <Button variant="primary">Detail</Button>
                                     </Link>

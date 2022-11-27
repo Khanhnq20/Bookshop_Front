@@ -15,7 +15,6 @@ export default function ProductManagementContainer(){
     React.useEffect(() => {
         searchProduct(text).then(res => {
             const data = res.data;
-            console.log(data);
             setProduct({
                 getProduct:[...data]
             })
@@ -24,7 +23,6 @@ export default function ProductManagementContainer(){
 
     const handleChange = (e) =>{
         setText(e.target.value);
-        console.log(text)
     }
     
     return(

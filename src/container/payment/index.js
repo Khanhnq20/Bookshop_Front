@@ -56,10 +56,9 @@ export default function PaymentContainer(){
         var dd = String(today.getDate()).padStart(2, '0');
         var mm = String(today.getMonth() + 1).padStart(2, '0'); 
         var yyyy = today.getFullYear();
-        today = mm + '/' + dd + '/' + yyyy;
+        today = dd + '/' + mm + '/' + yyyy;
         return today;
     }
-    console.log(state?.cart);
     return(<Formik
         initialValues={{
             phoneNumber:"",
@@ -86,7 +85,6 @@ export default function PaymentContainer(){
             return(
                 
                 <Form className="payment" onSubmit={handleSubmit}>
-                    <pre>{JSON.stringify(values,null,4)}</pre>
                     <Component.Flex className="payment__parent">
                         <Component className="payment__flex-1">
                             <Component style={{marginBottom:"50px"}}>
@@ -213,9 +211,9 @@ export default function PaymentContainer(){
                                         <Component>
                                             <Component className = "payment__productForm" key={index}>
                                                 <Component className="payment__productInfo">
-                                                    <FormComponent.Image style={{borderRadius:"8px",overflow:"hidden"}} 
+                                                    <FormComponent.Image
                                                         src={item.image}
-                                                        height="100px" width="100px"
+                                                        height="115px" width="auto"
                                                         />
                                                     <Component>
                                                         <Text className="payment__productContent" style={{fontWeight:"600"}}>{item.name}</Text>

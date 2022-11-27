@@ -1,9 +1,8 @@
 .product{
-    max-width: 1280px;
+    max-width: 1080px;
     margin: 0 auto;
     padding: 10px;
     &__form{
-        height: fit-content;
         border: 1px solid #f2f2f3;
         line-height: 28px;
         border-radius: 10px;
@@ -12,6 +11,7 @@
         padding:5px;
         margin:10px;
         width: 220px;
+        display: inline-block;
     }
     &__formImage{
         overflow: hidden;
@@ -67,8 +67,8 @@
         transform: translate(-50%);
     }
     &__list{
-        display: flex;
-        flex-wrap: wrap;
+        overflow: auto;
+        white-space: nowrap;
     }
     &__add{
         font-size: 200px;
