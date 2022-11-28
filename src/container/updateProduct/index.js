@@ -184,7 +184,7 @@ export default function UpdateProductContainer() {
                                             }}></Form.Control>
                                         <Image src={imageURL || "https://tinyurl.com/2mcfxrmt"} width="190px" height={"250px"} style={{margin:"20px"}}></Image>
                                     </Form.Group>
-                                    <Button.Update type="submit">Update Image</Button.Update>
+                                    <Button.Update type="submit" style={{width:"fit-content"}}>Update Image</Button.Update>
                                 </Form>
                                 </Component>
                             </Component>
@@ -215,9 +215,6 @@ export default function UpdateProductContainer() {
                         <Component>
                             <Component>
                                 <Text.Title>Update Product</Text.Title>
-                                <Component>
-                                    <FaTimes></FaTimes>
-                                </Component>
                             </Component>
                             <Form className="createProduct__entireForm" onSubmit={handleSubmit}>
                                 <Component.Grid className="createProduct__grid">
