@@ -204,7 +204,7 @@ export default function UpdateProductContainer() {
                     }
                     updateProduct(formSubmit,productSingle.id).then(r => {
                         toast.success("Updated!")
-                        navigation({pathname:"/"})
+                        navigation("/productManagement");
                     });
 
                 }}
@@ -283,7 +283,7 @@ export default function UpdateProductContainer() {
                                             name="description"
                                             rows={3}
                                             placeholder="Description"
-                                            value={productSingle.description}
+                                            value={values.description}
                                             isInvalid={touched.description && errors.description}
                                             onChange={handleChange}
                                             onBlur={handleBlur}
