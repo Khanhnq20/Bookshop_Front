@@ -4,6 +4,7 @@ import BannerContainer from "../container/banner";
 import BestTopic from "../container/bestTopic";
 import BokoBrand from "../container/bokoBrand";
 import ProductContainer from "../container/product";
+import ProductContainer2 from "../container/product2";
 
 export default function Home(){
 
@@ -13,7 +14,7 @@ export default function Home(){
             <BestTopic></BestTopic>
             <ProductContainer></ProductContainer>
             <BokoBrand></BokoBrand>
-            <ProductContainer></ProductContainer>
+            <ProductContainer2></ProductContainer2>
         </Component>
     )
 }

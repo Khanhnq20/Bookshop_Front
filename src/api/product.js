@@ -1,6 +1,6 @@
 import axios from 'axios';
 import {serialize} from 'object-to-formdata'
-const host = "https://localhost:5001";
+import { host } from './admin';
 
 const staffInstance = axios.create({
     baseURL: `${host}/api/staff`,

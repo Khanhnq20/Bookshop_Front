@@ -47,7 +47,7 @@ export default function ProductManagementContainer(){
                             <Button variant="primary">Search</Button>
                         </Component>
                     </Form>
-                <Component className="product__list">
+                <Component className="product__list" style={{overflow:"unset",whiteSpace:"pre-wrap"}}>
                     {product?.getProduct?.map(e =>{
                         
                         return (<Form className="product__form">

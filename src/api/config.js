@@ -1,5 +1,5 @@
 import axios from 'axios';
-const host = "https://localhost:5001";
+import { host } from './admin';
 
 const authInstance = axios.create({
     baseURL: `${host}/api/accounts`,

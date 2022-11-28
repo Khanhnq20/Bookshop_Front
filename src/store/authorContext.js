@@ -5,6 +5,7 @@ import {certificate, logout as apiLogout, login as apiLogin} from '../api/config
 const AuthorContext = createContext();
 
 export function Author({children}){
+    const [error,setError] = React.useState();
     const [state, setState] = React.useState({
         isLogin: undefined,
         userID: 0,
@@ -54,20 +55,21 @@ export function Author({children}){
         }
     };
     const login = React.useCallback((email,password, onSuccess, onError)=>{
-        apiLogin(email, password).then(res => {
-            let data = res.data;
-            asyncLocalStorage.setItem("access",data?.token).then(() =>{
-                return asyncLocalStorage.getItem("access");
-            }).then(value =>{
-                window.dispatchEvent(new Event("storage"));
-                toast.success("Welcome to Boko!")
+            apiLogin(email, password).then(res => {
+                let data = res.data;
+                asyncLocalStorage.setItem("access",data?.token).then(() =>{
+                    return asyncLocalStorage.getItem("access");
+                }).then(value =>{
+                    window.dispatchEvent(new Event("storage"));
+                    toast.success("Welcome to Boko!")
+                });
+                
+                setLogin(true);
+                onSuccess?.();
+            }).catch(e =>{
+                setError("Your Email or Password were wrong!")
+                onError?.();
             });
-
-            setLogin(true);
-            onSuccess?.();
-        }).catch(e =>{
-            onError?.();
-        });
     }, [state.isLogin])
     function setLogin(isLogin){
         setState(o=>({...o,isLogin}));
@@ -80,7 +82,7 @@ export function Author({children}){
     }
 
     return (
-        <AuthorContext.Provider value={{...state,setLogin, logout, login}} >
+        <AuthorContext.Provider value={{...state,setLogin, logout, login,error}} >
             {children}
         </AuthorContext.Provider>
     )
