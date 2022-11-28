@@ -127,7 +127,9 @@ export default function NavigationContainer({...resProp}){
                                 </Row>
                             }
                         </Component>
-                        <Component><Text className="nav__topic">About</Text></Component>
+                        <Link to="/about" style={{ textDecoration: "none" }}>
+                            <Text className="nav__topic">About</Text>
+                        </Link>
                     </Component.Flex>
                 </Component>
                 <Component style={{textAlign:"end"}} className="nav__flexItem">

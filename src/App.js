@@ -2,7 +2,7 @@
 import './App.css';
 import './scss/main.scss';
 import { BrowserRouter, Outlet, Route, Routes, Navigate } from 'react-router-dom';
-import { ChangePassword, CreateProduct, FilterProduct, Genres, GetPurchased, Home, Login, Payment, PaymentSuccess, Personal, ProductDetail, ProductManagement, PurchaseHistory, PurchaseHistoryDetail, RegisterStaff, StaffManagement, UpdateProduct, UserManagement } from './pages';
+import { About, ChangePassword, CreateProduct, FilterProduct, Genres, GetPurchased, Home, Login, Payment, PaymentSuccess, Personal, ProductDetail, ProductManagement, PurchaseHistory, PurchaseHistoryDetail, RegisterStaff, StaffManagement, UpdateProduct, UserManagement } from './pages';
 import NavigationContainer from './container/navigation';
 import RegisterContainer from './container/register';
 import React from 'react';
@@ -57,7 +57,7 @@ function App() {
               <Route path='/changePassword/:id' element={<ChangePassword></ChangePassword>}></Route>
               <Route path='/registerStaff' element={<RegisterStaff></RegisterStaff>}></Route>
               <Route path='/getPurchased' element={<GetPurchased></GetPurchased>}></Route>
-
+              <Route path='/about' element={<About></About>}></Route>
               <Route path='/productManagement' element={<ProductManagement></ProductManagement>}></Route>
             </Routes>
             

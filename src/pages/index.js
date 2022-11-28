@@ -16,3 +16,4 @@ export {default as ChangePassword} from './changePassword';
 export {default as RegisterStaff} from './registerStaff';
 export {default as GetPurchased} from './getPurchased';
 export {default as ProductManagement} from './productManagement';
+export {default as About} from './about';
