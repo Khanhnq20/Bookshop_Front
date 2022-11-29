@@ -29,9 +29,11 @@ export default function LoginContainer() {
 
     onSubmit={(values,formikHelper) => {
         formikHelper.setSubmitting(false);
-            contextHandler.login(values.username, values.password);
-            console.log(contextHandler.error);
-            setError(contextHandler.error);
+            contextHandler.login(values.username, values.password, ()=>{
+                setError("")
+            },(e)=>{
+                setError("Your Email or Password were wrong!")
+            });
     }}
     >
         {({touched, errors, handleSubmit, handleChange, handleBlur}) =>{

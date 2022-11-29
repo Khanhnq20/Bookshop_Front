@@ -2,11 +2,12 @@ import axios from 'axios';
 let host = "https://localhost:5001";
 // host ="https://bookshop20221127174500.azurewebsites.net";
 export {host}
+let access = localStorage.getItem("access");
 const adminInstance = axios.create({
     baseURL: `${host}/api/admin`,
     withCredentials:'same-site',
         headers: {
-        Authorization: `Bearer ${localStorage.getItem("access")}`
+        Authorization: `Bearer ${access}`
     }
 })
 

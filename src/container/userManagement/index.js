@@ -50,7 +50,7 @@ const UserManagementContainer = () => {
                 </thead>
                 {user?.getUser?.map((item,index)=>{
                     return(
-                        <tbody>
+                        <tbody key={index}>
                             <tr>
                             <td key={index}>{index+1}</td>
                             <td>{item.name}</td>

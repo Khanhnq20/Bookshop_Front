@@ -18,6 +18,7 @@ let productSchema = yup.object().shape({
       /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/,
       "Must Contain 8 Characters, One Uppercase, One Lowercase, One Number and One Special Case Character"
     ),
+    passwordConfirm: yup.string().required("This field is requied").oneOf([yup.ref("password"), null], "Passwords must match"),
     name: yup.string().required("Name is a required field"),
     dayOfBirth: yup.date().typeError("Day of Birth should be entered as yyyy/mm/dd").required("Day of Birth is a required field"),
     phoneNumber: yup.number().required("Phone Number is a required field"),
@@ -31,6 +32,7 @@ export default function RegisterContainer() {
     initialValues={{
         email: '',
         password: '',
+        passwordConfirm:"",
         name:'',
         dayOfBirth: '',
         phoneNumber: '',
@@ -131,6 +133,17 @@ export default function RegisterContainer() {
                                     placeholder="Enter your Password"
                                     name="password"/>
                             <Form.Control.Feedback type="invalid">{errors.password}</Form.Control.Feedback>
+                        </Form.Group>
+                        <Form.Group>
+                            <Form.Control
+                                type="password"
+                                name="passwordConfirm"
+                                placeholder="Enter password again"
+                                isInvalid={touched.passwordConfirm && errors.passwordConfirm}
+                                onChange={handleChange}
+                                onBlur={handleBlur}
+                            />
+                            <Form.Control.Feedback type="invalid">{errors.passwordConfirm}</Form.Control.Feedback>
                         </Form.Group>
                         <Button variant="success" onClick={handleSubmit}>Register</Button>
                         <Link to="/auth/login">

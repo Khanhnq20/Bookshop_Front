@@ -15,6 +15,7 @@ export function Author({children}){
         window.addEventListener("storage", () =>{
             certificate().then(response =>{
                 const {isLogged, userId,identity} = response.data;
+
                 setState({
                     isLogin: isLogged,
                     userID: userId,
@@ -60,15 +61,17 @@ export function Author({children}){
                 asyncLocalStorage.setItem("access",data?.token).then(() =>{
                     return asyncLocalStorage.getItem("access");
                 }).then(value =>{
+                    console.log(value);
                     window.dispatchEvent(new Event("storage"));
-                    toast.success("Welcome to Boko!")
+                    window.location.reload();
+                    toast.success("Welcome to Boko!");
                 });
                 
                 setLogin(true);
                 onSuccess?.();
             }).catch(e =>{
                 setError("Your Email or Password were wrong!")
-                onError?.();
+                onError?.(e);
             });
     }, [state.isLogin])
     function setLogin(isLogin){

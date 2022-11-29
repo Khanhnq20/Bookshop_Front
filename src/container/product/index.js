@@ -35,9 +35,9 @@ export default function ProductContainer(){
             <Component className="product">
                 <Text.Title style={{textAlign:"start",marginLeft:"10px"}}>Books Best Seller</Text.Title>
                 <Component className="product__list" style={{marginBottom:"25px"}}>
-                    {product?.getProduct?.map(e =>{
+                    {product?.getProduct?.map((e,index) =>{
                         
-                        return (<Form.Item className="product__form">
+                        return (<Form.Item className="product__form" key={index}>
                                     <Link to={{
                                         pathname: `/product/${e.id}`
                                     }}>
@@ -54,9 +54,9 @@ export default function ProductContainer(){
                 </Component>
                 <Text.Title style={{textAlign:"start",marginLeft:"10px"}}>Literature</Text.Title>
                 <Component className="product__list" style={{marginBottom:"25px"}}>
-                    {filter?.getFilter?.map(e =>{
+                    {filter?.getFilter?.map((e,index) =>{
                         
-                        return (<Form.Item className="product__form">
+                        return (<Form.Item className="product__form" key={index}>
                                     <Link to={{
                                         pathname: `/product/${e.product.id}`
                                     }}>

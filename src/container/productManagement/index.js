@@ -48,9 +48,9 @@ export default function ProductManagementContainer(){
                         </Component>
                     </Form>
                 <Component className="product__list" style={{overflow:"unset",whiteSpace:"pre-wrap"}}>
-                    {product?.getProduct?.map(e =>{
+                    {product?.getProduct?.map((e,index) =>{
                         
-                        return (<Form className="product__form">
+                        return (<Form className="product__form" key={index}>
                                     <Link to={{
                                         pathname: `/product/${e.id}`
                                     }}>

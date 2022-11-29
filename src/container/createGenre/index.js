@@ -95,8 +95,8 @@ export default function CreateGenreContainer(){
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {genre?.getGenre?.map(e =>{
-                                        return <tr>
+                                        {genre?.getGenre?.map((e,index) =>{
+                                        return <tr key={index}>
                                             <td style={{ padding: "10px 5px" }}>{e.id}</td>
                                             <td style={{ padding: "10px 5px" }}>{e.name}</td>
                                             <td style={{ padding: "10px 0" }}>

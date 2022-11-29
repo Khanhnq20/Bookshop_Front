@@ -2,11 +2,12 @@ import axios from 'axios';
 import {serialize} from 'object-to-formdata'
 import { host } from './admin';
 
+let access = localStorage.getItem("access");
 const staffInstance = axios.create({
     baseURL: `${host}/api/staff`,
     withCredentials: 'same-site',
         headers: {
-        Authorization: `Bearer ${localStorage.getItem("access")}`
+        Authorization: `Bearer ${access}`
     }
 })
 

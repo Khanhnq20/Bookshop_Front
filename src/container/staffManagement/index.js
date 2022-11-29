@@ -14,6 +14,7 @@ const StaffManagementContainer = () => {
     const [text,setText] = React.useState()
     React.useEffect(() => {
         getStaff(text).then(res => {
+
             const data = res.data;
             setStaff({
                 getStaff:[...data]
@@ -56,7 +57,7 @@ const StaffManagementContainer = () => {
                     </thead>
                     {staff?.getStaff?.map((item,index)=>{
                         return(
-                            <tbody>
+                            <tbody key={index}>
                                 <tr>
                                 <td key={index}>{index+1}</td>
                                 <td>{item.name}</td>

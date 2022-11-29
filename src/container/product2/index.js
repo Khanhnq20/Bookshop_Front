@@ -33,9 +33,9 @@ export default function ProductContainer2(){
             <Component className="product">
                 <Text.Title style={{textAlign:"start",marginLeft:"10px"}}>Mystery</Text.Title>
                 <Component className="product__list" style={{marginBottom:"25px"}}>
-                    {product?.getProduct?.map(e =>{
+                    {product?.getProduct?.map((e,index) =>{
                         
-                        return (<Form.Item className="product__form">
+                        return (<Form.Item className="product__form" key={index}>
                                     <Link to={{
                                         pathname: `/product/${e.product.id}`
                                     }}>
@@ -52,9 +52,9 @@ export default function ProductContainer2(){
                 </Component>
                 <Text.Title style={{textAlign:"start",marginLeft:"10px"}}>Self-Help</Text.Title>
                 <Component className="product__list" style={{marginBottom:"25px"}}>
-                    {filter?.getFilter?.map(e =>{
+                    {filter?.getFilter?.map((e,index) =>{
                         
-                        return (<Form.Item className="product__form">
+                        return (<Form.Item className="product__form" key={index}>
                                     <Link to={{
                                         pathname: `/product/${e.product.id}`
                                     }}>

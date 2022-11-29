@@ -47,7 +47,6 @@ export default function NavigationContainer({...resProp}){
     React.useEffect(() => {
         searchProductMain(text).then(res => {
             const data = res.data;
-            console.log(data);
             setProduct({
                 getProduct:[...data]
             })
@@ -56,7 +55,6 @@ export default function NavigationContainer({...resProp}){
 
     const handleChange = (e) =>{
         setText(e.target.value);
-        console.log(text)
     }
 
     return(
@@ -347,7 +345,6 @@ function LeftBar() {
     React.useEffect(() => {
         searchProductMain(text).then(res => {
             const data = res.data;
-            console.log(data);
             setProduct({
                 getProduct:[...data]
             })
@@ -356,7 +353,6 @@ function LeftBar() {
 
     const handleChange = (e) =>{
         setText(e.target.value);
-        console.log(text)
     }
     return (
         <Component className="nav__leftBar">

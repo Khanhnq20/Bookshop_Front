@@ -65,7 +65,6 @@ export function CartContext({children}) {
   }
 
   React.useEffect(() => {
-    console.log(cart);
     if(!mounting.current){
       localStorage.setItem("cart",JSON.stringify(cart));
     }

@@ -8,7 +8,6 @@ export function ProductContext({children}){
         React.useEffect(() => {
         getProduct().then(res => {
             const {data} = res;
-            console.log(data);
             setProduct(data)
         });
     }, [])

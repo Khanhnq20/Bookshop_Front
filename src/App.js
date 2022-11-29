@@ -1,7 +1,7 @@
 
 import './App.css';
 import './scss/main.scss';
-import { BrowserRouter, Outlet, Route, Routes, Navigate } from 'react-router-dom';
+import { BrowserRouter, Outlet, Route, Routes, Navigate, Link } from 'react-router-dom';
 import { About, ChangePassword, CreateProduct, FilterProduct, Genres, GetPurchased, Home, Login, Payment, PaymentSuccess, Personal, ProductDetail, ProductManagement, PurchaseHistory, PurchaseHistoryDetail, RegisterStaff, StaffManagement, UpdateProduct, UserManagement } from './pages';
 import NavigationContainer from './container/navigation';
 import RegisterContainer from './container/register';
@@ -72,10 +72,9 @@ function App() {
 }
 
 function RouteAuth({children, returnUrl}) {
-    const {isLogin,role} = useAthContext();
+    const {isLogin} = useAthContext();
 
   if(!isLogin) return (<>{children}</>);
-
   return <Navigate to={returnUrl || "/"}></Navigate>
 }
 

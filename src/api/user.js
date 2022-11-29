@@ -2,11 +2,12 @@ import axios from 'axios';
 
 import { host } from './admin';
 
+let access = localStorage.getItem("access");
 const userInstance = axios.create({
     baseURL : `${host}/api/user`,
     withCredentials: 'same-site',
         headers: {
-        Authorization: `Bearer ${localStorage.getItem("access")}`
+        Authorization: `Bearer ${access}`
     }
 })
 

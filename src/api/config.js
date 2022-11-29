@@ -1,11 +1,12 @@
 import axios from 'axios';
 import { host } from './admin';
 
+let access = localStorage.getItem("access");
 const authInstance = axios.create({
     baseURL: `${host}/api/accounts`,
     withCredentials:'same-site',
     headers: {
-        Authorization: `Bearer ${localStorage.getItem("access")}`
+        Authorization: `Bearer ${access}`
     }
 })
  
@@ -13,7 +14,7 @@ const staffInstance = axios.create({
     baseURL: `${host}/api/staff`,
     withCredentials:'same-site',
     headers: {
-        Authorization: `Bearer ${localStorage.getItem("access")}`
+        Authorization: `Bearer ${access}`
     }
 })
 
