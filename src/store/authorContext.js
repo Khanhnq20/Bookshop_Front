@@ -64,7 +64,6 @@ export function Author({children}){
                     console.log(value);
                     window.dispatchEvent(new Event("storage"));
                     window.location.reload();
-                    toast.success("Welcome to Boko!");
                 });
                 
                 setLogin(true);

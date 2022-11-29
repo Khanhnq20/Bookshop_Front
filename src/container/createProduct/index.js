@@ -19,8 +19,8 @@ let productSchema = yup.object().shape({
     publishDay: yup.date().typeError("Publish day should be entered as yyyy/mm/dd").required("Publish day is a required field"),
     pages: yup.number().required("Pages is a required field"),
     description: yup.string().required("Description is a required field"),
-    genreIds: yup.array().min(1)
-})
+    genreIds: yup.array().min(1),
+    fileImage: yup.mixed().required("You haven't import the Image")})
 
 
 export default function CreateProductContainer(){
@@ -57,7 +57,7 @@ export default function CreateProductContainer(){
         publishDay: Date,
         pages: '',
         isRemaining: false,
-        fileImage: File,
+        
         type: [{
             name: 'Soft',
             price: '',
@@ -78,6 +78,7 @@ export default function CreateProductContainer(){
         });
 
     }}
+    
     >
         {({values,touched,errors,handleSubmit,handleChange, handleBlur,handleReset,setFieldValue}) =>{
             return <Component className="createProduct">
@@ -89,6 +90,7 @@ export default function CreateProductContainer(){
                         <Component style={{textAlign:"center"}}>
                             <Form.Group controlId="file">
                                 <Form.Control type="file"
+                                isInvalid={!!errors.fileImage}
                                 onChange={(e) =>{
                                     const file = e.target.files[0];
                                     setFieldValue("fileImage", file);
@@ -101,6 +103,7 @@ export default function CreateProductContainer(){
                                     fileReader.readAsDataURL(file);
 
                                 }}></Form.Control>
+                                <Form.Control.Feedback type="invalid">{errors.fileImage}</Form.Control.Feedback>
                                 <Image style={{margin:"20px"}} src={imageURL || "https://cdn-icons-png.flaticon.com/512/2232/2232688.png"} width="auto" height={"200px"}></Image>
                             </Form.Group>
                         </Component>
